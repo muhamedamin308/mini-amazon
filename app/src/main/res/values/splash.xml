@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AnimatedSplash.MySplash" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_splaher</item>
+        <item name="android:windowSplashScreenAnimationDuration">4500</item>
+        <item name="postSplashScreenTheme">@style/Theme.MiniAmazon</item>
+    </style>
+</resources>
