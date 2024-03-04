@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".AmazonApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniAmazon">
         <activity
-            android:name=".ui.auth.LoginActivity"
-            android:theme="@style/Theme.AnimatedSplash.MySplash"
-            android:exported="true">
+            android:name=".ui.activites.home.ShoppingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.auth.AuthenticationActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.AnimatedSplash.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

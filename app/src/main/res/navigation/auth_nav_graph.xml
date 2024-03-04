@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/introductionFragment2">
+    <fragment
+        android:id="@+id/introductionFragment2"
+        android:name="com.example.miniamazon.ui.fragments.auth.IntroductionFragment"
+        android:label="IntroductionFragment"
+        tools:layout="@layout/fragment_introduction">
+        <action
+            android:id="@+id/action_introductionFragment2_to_accountsFragment2"
+            app:destination="@id/accountsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountsFragment2"
+        android:name="com.example.miniamazon.ui.fragments.auth.AccountsFragment"
+        android:label="AccountsFragment"
+        tools:layout="@layout/fragment_accounts">
+        <action
+            android:id="@+id/action_accountsFragment2_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_accountsFragment2_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.miniamazon.ui.fragments.auth.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.example.miniamazon.ui.fragments.auth.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment2_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+</navigation>

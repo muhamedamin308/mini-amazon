@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="60dp">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@drawable/icon2" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Let's Login"
+                android:textAlignment="center"
+                android:textColor="@color/brown"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/email_et"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="text"
+                android:textColor="@color/brown"
+                android:textColorHint="#818080" />
+
+            <EditText
+                android:id="@+id/password_et"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="text"
+                android:textColor="@color/brown"
+                android:textColorHint="#818080" />
+
+
+            <TextView
+                android:id="@+id/forget_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:fontFamily="@font/quicksand_semibold"
+                android:text="Forget Password?"
+                android:textAlignment="textEnd"
+                android:textColor="@color/brown"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/continue_button"
+                style="@style/brownButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="20dp"
+                android:backgroundTint="@color/brown"
+                android:text="Continue" />
+
+            <TextView
+                android:id="@+id/register_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="Don't have account? Register."
+                android:textAlignment="center"
+                android:textColor="@color/brown"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="------------- or -------------"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/facebook_login"
+                style="@style/whiteButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:drawableStart="@drawable/facebook"
+                android:paddingStart="10dp"
+                android:text="Facebook"
+                android:textColor="@color/brown"
+                android:textColorHint="#818080"
+                android:textStyle="bold" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/google_login"
+                style="@style/whiteButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:drawableStart="@drawable/google"
+                android:paddingStart="10dp"
+                android:text="Google"
+                android:textColor="@color/brown"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
