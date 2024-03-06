@@ -14,18 +14,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon2" />
+        app:srcCompat="@drawable/ic_mini_amazon" />
 
     <TextView
         android:id="@+id/textView"
         style="@style/h4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:fontFamily="@font/quicksand_bold"
         android:gravity="center"
         android:text="life is not Perfect But Your Outfit Can Be!"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
         app:layout_constraintVertical_bias="0.375"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

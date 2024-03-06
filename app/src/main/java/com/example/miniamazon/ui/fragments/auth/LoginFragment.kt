@@ -2,7 +2,9 @@ package com.example.miniamazon.ui.fragments.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,8 +13,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.miniamazon.R
 import com.example.miniamazon.databinding.FragmentLoginBinding
 import com.example.miniamazon.ui.activites.home.ShoppingActivity
+import com.example.miniamazon.ui.dialog.setUpBottomSheetDialog
 import com.example.miniamazon.ui.viewmodel.LoginViewModel
 import com.example.miniamazon.util.Resource
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -21,7 +25,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
     override fun onCreateView(
-        inflater: android.view.LayoutInflater, container: android.view.ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater)
@@ -38,6 +42,38 @@ class LoginFragment : Fragment() {
             }
             registerTv.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment2_to_registerFragment2)
+            }
+        }
+
+        binding.forgetPassword.setOnClickListener {
+            setUpBottomSheetDialog { email ->
+                viewModel.resetPassword(email)
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.resetPassword.collect {
+                when (it) {
+
+                    is Resource.Loading -> Unit
+                    is Resource.Success -> {
+                        Snackbar.make(
+                            requireView(),
+                            "Reset link was send to your email.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+
+                    is Resource.Error -> {
+                        Snackbar.make(
+                            requireView(),
+                            "Error: ${it.message.toString()}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+
+                    is Resource.UnSpecified -> Unit
+                }
             }
         }
 

@@ -1,7 +1,9 @@
 package com.example.miniamazon.ui.fragments.auth
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.miniamazon.R
@@ -11,7 +13,7 @@ import com.example.miniamazon.databinding.FragmentIntroductionBinding
 class AccountsFragment: Fragment() {
     private lateinit var binding: FragmentAccountsBinding
     override fun onCreateView(
-        inflater: android.view.LayoutInflater, container: android.view.ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAccountsBinding.inflate(inflater)

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/InputAuth"
     android:background="@color/main_background">
 
     <ScrollView
@@ -30,7 +31,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/icon2"
+                    app:srcCompat="@drawable/ic_mini_amazon"
                     android:layout_marginStart="25dp"/>
 
                 <TextView
@@ -39,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/quicksand_bold"
-                    android:text="Let's Login"
+                    android:text="Welcome!"
                     android:layout_marginHorizontal="10dp"
                     android:textColor="@color/brown"
                     android:textSize="25sp" />

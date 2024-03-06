@@ -2,6 +2,7 @@ package com.example.miniamazon.ui.activites.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.miniamazon.R
 import dagger.hilt.android.AndroidEntryPoint

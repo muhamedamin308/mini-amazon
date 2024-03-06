@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/InputAuth"
     android:background="@color/main_background">
 
     <ScrollView
@@ -25,7 +26,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                app:srcCompat="@drawable/icon2" />
+                app:srcCompat="@drawable/ic_mini_amazon" />
 
             <TextView
                 android:id="@+id/textView3"

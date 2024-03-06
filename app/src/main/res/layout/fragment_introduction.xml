@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="@color/main_background">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:animation="@anim/slide_in"
+        android:animation="@anim/from_left"
         android:scaleType="centerCrop"
         android:src="@drawable/model1"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
@@ -23,7 +24,7 @@
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:animation="@anim/slide_out"
+        android:animation="@anim/from_right"
         android:scaleType="centerCrop"
         android:src="@drawable/model"
         app:layout_constraintBottom_toBottomOf="@id/images_guideline"
@@ -40,7 +41,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/icon2" />
+        app:srcCompat="@drawable/ic_mini_amazon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/images_guideline"
@@ -53,7 +54,7 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:animation="@anim/fade_in"
+        android:animation="@anim/bottom_to_up"
         android:src="@drawable/baseline_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text2_guideline"
@@ -84,7 +85,7 @@
         android:gravity="center"
         android:text="life is not Perfect But Your Outfit Can Be!"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
         style="@style/h4"
         app:layout_constraintBottom_toBottomOf="@id/text3_guideline"
         app:layout_constraintEnd_toEndOf="@id/text2_guideline"
