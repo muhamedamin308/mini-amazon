@@ -1,6 +1,8 @@
 package com.example.miniamazon.di
 
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,4 +15,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+    @Provides
+    @Singleton
+    fun provideFirebaseFireStoreDatabase() = Firebase.firestore
 }

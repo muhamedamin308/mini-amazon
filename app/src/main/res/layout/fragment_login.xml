@@ -47,7 +47,7 @@
                 android:layout_marginVertical="10dp"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/brown"
                 android:textColorHint="#818080" />
 
@@ -60,7 +60,7 @@
                 android:layout_marginVertical="10dp"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textColor="@color/brown"
                 android:textColorHint="#818080" />
 
@@ -76,7 +76,7 @@
                 android:textColor="@color/brown"
                 android:textSize="16sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
                 android:id="@+id/continue_button"
                 style="@style/brownButtonStyle"
                 android:layout_width="match_parent"
@@ -84,7 +84,10 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
                 android:backgroundTint="@color/brown"
-                android:text="Continue" />
+                android:text="Continue"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:spinning_bar_color="@color/main_background"/>
 
             <TextView
                 android:id="@+id/register_tv"
@@ -103,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="30dp"
                 android:fontFamily="@font/quicksand_bold"
+                android:textColor="@color/brown"
                 android:text="------------- or -------------"
                 android:textAlignment="center"
                 android:textSize="20sp" />

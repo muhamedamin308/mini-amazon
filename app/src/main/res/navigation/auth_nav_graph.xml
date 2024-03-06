@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_introduction">
         <action
             android:id="@+id/action_introductionFragment2_to_accountsFragment2"
-            app:destination="@id/accountsFragment2" />
+            app:destination="@id/accountsFragment2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/accountsFragment2"
@@ -20,10 +24,18 @@
         tools:layout="@layout/fragment_accounts">
         <action
             android:id="@+id/action_accountsFragment2_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            app:destination="@id/loginFragment2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_accountsFragment2_to_registerFragment2"
-            app:destination="@id/registerFragment2" />
+            app:destination="@id/registerFragment2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment2"
@@ -32,7 +44,12 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment2_to_registerFragment2"
-            app:destination="@id/registerFragment2" />
+            app:destination="@id/registerFragment2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/accountsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment2"
@@ -41,6 +58,11 @@
         tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment2_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            app:destination="@id/loginFragment2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/accountsFragment2" />
     </fragment>
 </navigation>

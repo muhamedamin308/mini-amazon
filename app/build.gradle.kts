@@ -67,11 +67,13 @@ dependencies {
     implementation("com.shuhart.stepview:stepview:1.5.1")
     //Android Ktx
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.fragment:fragment-ktx:1.5.2")
     //Dagger hilt
     implementation("com.google.dagger:hilt-android:2.51")
     kapt("com.google.dagger:hilt-compiler:2.51")
     //Firebase
     implementation("com.google.firebase:firebase-auth:21.0.6")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.3")
 }
 
 kapt {

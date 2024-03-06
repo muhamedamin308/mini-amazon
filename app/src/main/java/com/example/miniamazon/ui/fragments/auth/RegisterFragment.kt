@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.User
 import com.example.miniamazon.databinding.FragmentRegisterBinding
 import com.example.miniamazon.ui.viewmodel.RegisterViewModel
@@ -43,6 +45,9 @@ class RegisterFragment : Fragment() {
                 )
                 val password = passwordEt.text.toString()
                 viewModel.createNewAccountUsingEmailAndPassword(user, password)
+            }
+            loginTv.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment2_to_loginFragment2)
             }
         }
         lifecycleScope.launchWhenStarted {
