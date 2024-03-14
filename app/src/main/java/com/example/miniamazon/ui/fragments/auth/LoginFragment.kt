@@ -15,10 +15,9 @@ import com.example.miniamazon.databinding.FragmentLoginBinding
 import com.example.miniamazon.ui.activites.home.ShoppingActivity
 import com.example.miniamazon.ui.dialog.setUpBottomSheetDialog
 import com.example.miniamazon.ui.viewmodel.LoginViewModel
-import com.example.miniamazon.util.Resource
+import com.example.miniamazon.util.Status
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -38,7 +37,7 @@ class LoginFragment : Fragment() {
             continueButton.setOnClickListener {
                 val email = emailEt.text.toString().trim()
                 val password = passwordEt.text.toString()
-                viewModel.loginWithEmailAndPassword(email, password)
+                viewModel.login(email, password)
             }
             registerTv.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment2_to_registerFragment2)
@@ -55,8 +54,8 @@ class LoginFragment : Fragment() {
             viewModel.resetPassword.collect {
                 when (it) {
 
-                    is Resource.Loading -> Unit
-                    is Resource.Success -> {
+                    is Status.Loading -> Unit
+                    is Status.Success -> {
                         Snackbar.make(
                             requireView(),
                             "Reset link was send to your email.",
@@ -64,7 +63,7 @@ class LoginFragment : Fragment() {
                         ).show()
                     }
 
-                    is Resource.Error -> {
+                    is Status.Error -> {
                         Snackbar.make(
                             requireView(),
                             "Error: ${it.message.toString()}",
@@ -72,7 +71,7 @@ class LoginFragment : Fragment() {
                         ).show()
                     }
 
-                    is Resource.UnSpecified -> Unit
+                    is Status.UnSpecified -> Unit
                 }
             }
         }
@@ -81,8 +80,8 @@ class LoginFragment : Fragment() {
             viewModel.login.collect {
                 when (it) {
 
-                    is Resource.Loading -> binding.continueButton.startAnimation()
-                    is Resource.Success -> {
+                    is Status.Loading -> binding.continueButton.startAnimation()
+                    is Status.Success -> {
                         binding.continueButton.revertAnimation()
                         Intent(requireActivity(), ShoppingActivity::class.java).also { intent ->
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -90,7 +89,7 @@ class LoginFragment : Fragment() {
                         }
                     }
 
-                    is Resource.Error -> {
+                    is Status.Error -> {
                         binding.continueButton.revertAnimation()
                         Toast.makeText(
                             requireContext(),
@@ -99,7 +98,7 @@ class LoginFragment : Fragment() {
                         ).show()
                     }
 
-                    is Resource.UnSpecified -> Unit
+                    is Status.UnSpecified -> Unit
                 }
             }
         }

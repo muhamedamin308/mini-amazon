@@ -41,6 +41,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             VideoGamesCategoryFragment(),
             PerfumesCategoryFragment()
         )
+
+        binding.viewPagerHome.isUserInputEnabled = false
+
         val viewPagerAdapter = HomeViewPagerAdapter(
             categories,
             childFragmentManager,

@@ -9,7 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.miniamazon.R
 import com.example.miniamazon.databinding.ActivityShoppingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShoppingActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityShoppingBinding.inflate(layoutInflater)

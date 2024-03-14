@@ -56,6 +56,7 @@
     <dimen name="h4TextSize">35sp</dimen>
     <dimen name="h2TextSize">17sp</dimen>
     <dimen name="h3TextSize">22sp</dimen>
+    <dimen name="spacing">20dp</dimen>
 
     <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>

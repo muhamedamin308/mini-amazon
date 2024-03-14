@@ -15,7 +15,7 @@ import com.example.miniamazon.databinding.FragmentRegisterBinding
 import com.example.miniamazon.ui.viewmodel.RegisterViewModel
 import com.example.miniamazon.util.Constants.TAG
 import com.example.miniamazon.util.RegisterValidation
-import com.example.miniamazon.util.Resource
+import com.example.miniamazon.util.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -44,7 +44,7 @@ class RegisterFragment : Fragment() {
                     emailEt.text.toString().trim()
                 )
                 val password = passwordEt.text.toString()
-                viewModel.createNewAccountUsingEmailAndPassword(user, password)
+                viewModel.createNewAccount(user, password)
             }
             loginTv.setOnClickListener {
                 findNavController().navigate(R.id.action_registerFragment2_to_loginFragment2)
@@ -53,21 +53,21 @@ class RegisterFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.register.collect {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Status.Loading -> {
                         binding.continueButton.startAnimation()
                     }
 
-                    is Resource.Success -> {
+                    is Status.Success -> {
                         Log.i(TAG, it.data.toString())
                         binding.continueButton.revertAnimation()
                     }
 
-                    is Resource.Error -> {
+                    is Status.Error -> {
                         Log.e(TAG, it.message.toString())
                         binding.continueButton.revertAnimation()
                     }
 
-                    is Resource.UnSpecified -> Unit
+                    is Status.UnSpecified -> Unit
                 }
             }
         }
