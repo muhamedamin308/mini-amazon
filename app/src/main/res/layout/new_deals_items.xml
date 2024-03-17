@@ -14,7 +14,7 @@
         android:id="@+id/btn_see_product"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/category">
+        android:background="@color/black">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/img_best_deal"
@@ -29,8 +29,8 @@
                 android:id="@+id/image_newDeals"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:src="@drawable/model"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

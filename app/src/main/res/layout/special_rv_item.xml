@@ -69,7 +69,7 @@
             android:layout_width="77dp"
             android:layout_height="30dp"
             android:background="@drawable/blue_background"
-            android:backgroundTint="@color/main_background"
+            android:backgroundTint="@color/cancel"
             android:fontFamily="@font/quicksand_semibold"
             android:text="Add to cart"
             android:textAllCaps="false"

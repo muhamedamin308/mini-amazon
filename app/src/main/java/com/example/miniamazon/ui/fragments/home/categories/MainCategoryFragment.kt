@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -79,7 +80,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                 recommendedProduct.collectLatest { status ->
                     when (status) {
                         is Status.Error -> {
-                            showLoadingDialog()
+                            binding.recommendedProductsProgressBar.visibility = View.GONE
                             Log.e(TAG, status.message.toString())
                             Toast.makeText(
                                 requireContext(),
@@ -89,12 +90,12 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                         }
 
                         is Status.Loading -> {
-                            showLoadingDialog()
+                            binding.recommendedProductsProgressBar.visibility = View.VISIBLE
                         }
 
                         is Status.Success -> {
                             recommendedProductsAdapter.differ.submitList(status.data)
-                            hideLoadingDialog()
+                            binding.recommendedProductsProgressBar.visibility = View.GONE
                         }
 
                         is Status.UnSpecified -> Unit
@@ -130,6 +131,12 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                 }
             }
         }
+
+        binding.nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { view, _, scrollY, _, _ ->
+            if (view.getChildAt(0).bottom <= view.height + scrollY) {
+                viewModel.fetchRecommendedProducts()
+            }
+        })
     }
 
     private fun hideLoadingDialog() {

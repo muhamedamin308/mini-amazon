@@ -1,6 +1,5 @@
 package com.example.miniamazon.util
 
-import android.annotation.SuppressLint
 import com.example.miniamazon.R
 
 object Constants {
@@ -13,5 +12,17 @@ object Constants {
         const val INTRODUCTION_SHARED_KEY = "IntroKey"
         val ACCOUNT_OPTIONS = R.id.action_introductionFragment2_to_accountsFragment2
         const val SHOPPING_ACTIVITY = 111
+    }
+
+    data object Categories {
+        const val APPLIANCES = "Appliances"
+        const val FASHION = "Fashion"
+        const val ELECTRONICS = "Electronics"
+        const val GROCERY = "Grocery"
+        const val VIDEO_GAME = "Video Games"
+        const val PERFUMES = "Perfumes"
+        const val NEW_DEALS = "New Deals"
+        const val RECOMMENDED_FOR_YOU = "Recommended For You"
+        const val SPECIAL_PRODUCTS = "Special Products"
     }
 }

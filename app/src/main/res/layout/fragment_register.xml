@@ -146,8 +146,7 @@
                 android:drawableStart="@drawable/facebook"
                 android:paddingStart="10dp"
                 android:text="Facebook"
-                android:textColor="@color/brown"
-                android:textColorHint="#818080"
+                android:textColor="@color/main_background"
                 android:textStyle="bold" />
 
 
@@ -161,7 +160,7 @@
                 android:drawableStart="@drawable/google"
                 android:paddingStart="10dp"
                 android:text="Google"
-                android:textColor="@color/brown"
+                android:textColor="@color/main_background"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>

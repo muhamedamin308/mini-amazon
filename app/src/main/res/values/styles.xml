@@ -43,8 +43,15 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="facebookStyle">
+        <item name="android:background">@drawable/auth_g</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:textSize">@dimen/h2TextSize</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="editText">
-        <item name="android:background">@drawable/white_background</item>
+        <item name="android:background">@drawable/auth_g</item>
         <item name="android:paddingStart">12dp</item>
         <item name="singleLine">true</item>
         <item name="android:textStyle">bold</item>

@@ -84,8 +84,9 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/cancel"
                 android:text="Continue"
+                android:textColor="@color/brown"
                 android:layout_gravity="center"
                 android:gravity="center"
                 app:spinning_bar_color="@color/main_background"/>
@@ -115,7 +116,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/facebook_login"
-                style="@style/whiteButtonStyle"
+                style="@style/facebookStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="30dp"
@@ -130,7 +131,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/google_login"
-                style="@style/whiteButtonStyle"
+                style="@style/facebookStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="30dp"

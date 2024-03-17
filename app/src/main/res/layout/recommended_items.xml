@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp"
-        android:background="@color/category">
+        android:background="@color/black">
         
         <androidx.cardview.widget.CardView
             android:id="@+id/img_product"
@@ -29,8 +29,8 @@
                 android:id="@+id/image_product"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:src="@drawable/model1"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -57,14 +57,16 @@
                 android:text="Chair with no context"
                 android:textColor="@color/brown"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginEnd="4dp"/>
 
             <ImageView
                 android:id="@+id/img_favorite"
-                android:layout_width="20dp"
+                android:layout_width="16dp"
                 android:layout_weight="0.1"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
+                android:layout_gravity="end"
                 android:src="@drawable/ic_not_favourite" />
         </LinearLayout>
 
@@ -92,7 +94,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/quicksand_bold"
             android:text="$1600"
-            android:textColor="@color/cancel"
+            android:textColor="@color/brown"
             android:textSize="12sp"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="parent"

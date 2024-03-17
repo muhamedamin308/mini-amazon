@@ -20,10 +20,18 @@
     <color name="g_orange_yellow">#F8BA00</color>
 
 
-    <color name="main_background">#EDE3D0</color>
-    <color name="simple_edits">#FF5A37</color>
-    <color name="category">#FFF7F0</color>
-    <color name="Unselected_category">#A5938B</color>
-    <color name="cancel">#30241F</color>
-    <color name="brown">#513D35</color>
+    <color name="main_background">#222831</color>
+    <color name="category">#4D5563</color>
+    <color name="Unselected_category">#31363F</color>
+    <color name="cancel">#76ABAE</color>
+    <color name="brown">#EEEEEE</color>
+
+
+    <!--
+    main 222831
+    category 31363F - el3ab feh
+    UnSelected 31363F
+    buttons 76ABAE
+    font EEEEEE
+    -->
 </resources>
