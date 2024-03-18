@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.miniamazon.R
-import com.example.miniamazon.data.adapter.HomeViewPagerAdapter
+import com.example.miniamazon.ui.adapter.HomeViewPagerAdapter
 import com.example.miniamazon.databinding.FragmentHomeBinding
 import com.example.miniamazon.ui.fragments.home.categories.AppliancesCategoryFragment
 import com.example.miniamazon.ui.fragments.home.categories.ElectronicsCategoryFragment

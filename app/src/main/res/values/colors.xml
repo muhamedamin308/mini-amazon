@@ -21,6 +21,7 @@
 
 
     <color name="main_background">#222831</color>
+    <color name="main_background_special">#181C22</color>
     <color name="category">#4D5563</color>
     <color name="Unselected_category">#31363F</color>
     <color name="cancel">#76ABAE</color>

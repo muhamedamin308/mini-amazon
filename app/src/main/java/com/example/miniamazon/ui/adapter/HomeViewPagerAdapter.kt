@@ -1,4 +1,4 @@
-package com.example.miniamazon.data.adapter
+package com.example.miniamazon.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

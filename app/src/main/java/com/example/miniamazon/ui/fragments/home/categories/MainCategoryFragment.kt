@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.miniamazon.R
-import com.example.miniamazon.data.adapter.NewDealsAdapter
-import com.example.miniamazon.data.adapter.RecommendedProductsAdapter
-import com.example.miniamazon.data.adapter.SpecialProductsAdapter
+import com.example.miniamazon.ui.adapter.NewDealsAdapter
+import com.example.miniamazon.ui.adapter.RecommendedProductsAdapter
+import com.example.miniamazon.ui.adapter.SpecialProductsAdapter
 import com.example.miniamazon.databinding.FragmentMainCategoryBinding
 import com.example.miniamazon.ui.viewmodel.MainCategoryViewModel
 import com.example.miniamazon.util.Constants.TAG

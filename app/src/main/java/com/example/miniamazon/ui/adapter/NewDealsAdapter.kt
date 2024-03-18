@@ -1,4 +1,4 @@
-package com.example.miniamazon.data.adapter
+package com.example.miniamazon.ui.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
