@@ -61,6 +61,10 @@ class ProductDetailsFragment : Fragment() {
             }
             productOldPrice.text = "$ ${product.price}"
             productDetailsBack.setOnClickListener { findNavController().navigateUp() }
+            if (product.colors.isNullOrEmpty())
+                colors.visibility = View.INVISIBLE
+            if (product.sizes.isNullOrEmpty())
+                sizes.visibility = View.INVISIBLE
         }
         productImagesAdapter.differ.submitList(product.images)
         product.colors?.let { productColorAdapter.differ.submitList(it) }
