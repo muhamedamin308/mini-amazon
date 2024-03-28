@@ -50,5 +50,10 @@ class SpecialProductsAdapter :
     override fun onBindViewHolder(holder: SpecialProductViewHolder, position: Int) {
         val product = differ.currentList[position]
         holder.bind(product)
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(product)
+        }
     }
+
+    var onClick: ((Product) -> Unit)? = null
 }

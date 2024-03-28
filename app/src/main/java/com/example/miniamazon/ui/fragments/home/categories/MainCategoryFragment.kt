@@ -10,18 +10,19 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.miniamazon.R
+import com.example.miniamazon.databinding.FragmentMainCategoryBinding
 import com.example.miniamazon.ui.adapter.NewDealsAdapter
 import com.example.miniamazon.ui.adapter.RecommendedProductsAdapter
 import com.example.miniamazon.ui.adapter.SpecialProductsAdapter
-import com.example.miniamazon.databinding.FragmentMainCategoryBinding
 import com.example.miniamazon.ui.viewmodel.MainCategoryViewModel
 import com.example.miniamazon.util.Constants.TAG
 import com.example.miniamazon.util.GridSpaceItemDecoration
 import com.example.miniamazon.util.Status
+import com.example.miniamazon.util.visibleNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -47,6 +48,32 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         initSpecialRecyclerView()
         initNewDealsRecyclerView()
         initRecommendedRecyclerView()
+
+        specialProductAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController()
+                .navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment,
+                    bundle
+                )
+        }
+        recommendedProductsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController()
+                .navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment,
+                    bundle
+                )
+        }
+        newDealsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController()
+                .navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment,
+                    bundle
+                )
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.apply {
                 specialProduct.collectLatest { status ->
@@ -175,9 +202,14 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     private fun initNewDealsRecyclerView() {
         newDealsAdapter = NewDealsAdapter()
         binding.recyclerNewDeals.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(false)
             adapter = newDealsAdapter
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        visibleNavigation()
     }
 }

@@ -26,13 +26,5 @@
     <color name="Unselected_category">#31363F</color>
     <color name="cancel">#76ABAE</color>
     <color name="brown">#EEEEEE</color>
-
-
-    <!--
-    main 222831
-    category 31363F - el3ab feh
-    UnSelected 31363F
-    buttons 76ABAE
-    font EEEEEE
-    -->
+    <color name="selected_color">#87A922</color>
 </resources>

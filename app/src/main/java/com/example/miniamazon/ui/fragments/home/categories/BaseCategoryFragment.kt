@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.R
 import com.example.miniamazon.databinding.FragmentBaseBinding
 import com.example.miniamazon.ui.adapter.NewDealsAdapter
 import com.example.miniamazon.ui.adapter.OfferProductsAdapter
+import com.example.miniamazon.util.visibleNavigation
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
     private lateinit var binding: FragmentBaseBinding
@@ -31,6 +33,23 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
         super.onViewCreated(view, savedInstanceState)
         initAllAdapters()
 
+        productsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController()
+                .navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment,
+                    bundle
+                )
+        }
+        productsWithOfferAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController()
+                .navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment,
+                    bundle
+                )
+        }
+
         binding.recyclerOffers.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -45,6 +64,11 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
                 onAllProductsRequest()
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        visibleNavigation()
     }
 
     fun hideOfferLoading() {
