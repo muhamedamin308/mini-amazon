@@ -133,7 +133,7 @@
 
 
                 <TextView
-                    android:id="@+id/sizes"
+                    android:id="@+id/sizes_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -151,14 +151,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintStart_toStartOf="@id/sizes"
-                    app:layout_constraintTop_toBottomOf="@id/sizes"
+                    app:layout_constraintStart_toStartOf="@id/sizes_tv"
+                    app:layout_constraintTop_toBottomOf="@id/sizes_tv"
                     tools:itemCount="1"
                     tools:listitem="@layout/sizes_item_view" />
 
 
                 <TextView
-                    android:id="@+id/colors"
+                    android:id="@+id/colors_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -167,7 +167,7 @@
                     android:text="Select Color"
                     android:textColor="@color/brown"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@id/sizes"
+                    app:layout_constraintStart_toStartOf="@id/sizes_tv"
                     app:layout_constraintTop_toBottomOf="@id/recyclerSizes" />
 
 
@@ -176,8 +176,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintStart_toStartOf="@id/colors"
-                    app:layout_constraintTop_toBottomOf="@id/colors"
+                    app:layout_constraintStart_toStartOf="@id/colors_tv"
+                    app:layout_constraintTop_toBottomOf="@id/colors_tv"
                     tools:itemCount="1"
                     tools:listitem="@layout/color_item_view" />
 

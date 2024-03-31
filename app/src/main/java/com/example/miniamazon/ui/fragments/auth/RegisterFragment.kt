@@ -60,6 +60,7 @@ class RegisterFragment : Fragment() {
                     is Status.Success -> {
                         Log.i(TAG, it.data.toString())
                         binding.continueButton.revertAnimation()
+                        findNavController().navigate(R.id.action_registerFragment2_to_loginFragment2)
                     }
 
                     is Status.Error -> {

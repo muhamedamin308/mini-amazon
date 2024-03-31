@@ -2,6 +2,7 @@ package com.example.miniamazon.di
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.example.miniamazon.data.firebase.FirebaseFunctions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -11,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import com.example.miniamazon.util.Constants
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -29,4 +31,11 @@ object AppModule {
         Constants.Introduction.INTRODUCTION_SHARED_PREFERENCES,
         Application.MODE_PRIVATE
     )
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFunctions(
+        firebaseAuth: FirebaseAuth,
+        fireStore: FirebaseFirestore
+    ) = FirebaseFunctions(fireStore, firebaseAuth)
 }
