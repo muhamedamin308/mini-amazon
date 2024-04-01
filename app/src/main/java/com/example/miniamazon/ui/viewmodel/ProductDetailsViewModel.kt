@@ -3,7 +3,7 @@ package com.example.miniamazon.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Cart
-import com.example.miniamazon.data.firebase.FirebaseFunctions
+import com.example.miniamazon.data.firebase.FirebaseDataLayer
 import com.example.miniamazon.util.Constants.CART_COLLECTION
 import com.example.miniamazon.util.Constants.USER_COLLECTION
 import com.example.miniamazon.util.Status
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class ProductDetailsViewModel @Inject constructor(
     private val fireStore: FirebaseFirestore,
     private val auth: FirebaseAuth,
-    private val firebaseFunctions: FirebaseFunctions
+    private val dataLayer: FirebaseDataLayer
 ) : ViewModel() {
     private val mAddToCart = MutableStateFlow<Status<Cart>>(Status.UnSpecified())
     val addToCart = mAddToCart.asStateFlow()
@@ -52,7 +52,7 @@ class ProductDetailsViewModel @Inject constructor(
     }
 
     private fun addNewProduct(cart: Cart) {
-        firebaseFunctions.addProductToCart(cart) { cartProduct, exception ->
+        dataLayer.addProductToCart(cart) { cartProduct, exception ->
             viewModelScope.launch {
                 if (exception == null) {
                     mAddToCart.emit(Status.Success(cartProduct!!))
@@ -64,7 +64,7 @@ class ProductDetailsViewModel @Inject constructor(
     }
 
     private fun increaseExistingProduct(documentId: String, cartProduct: Cart) {
-        firebaseFunctions.increaseExcitingProductQuantity(documentId) { _, exception ->
+        dataLayer.increaseExcitingProductQuantity(documentId) { _, exception ->
             viewModelScope.launch {
                 if (exception == null) {
                     mAddToCart.emit(Status.Success(cartProduct))

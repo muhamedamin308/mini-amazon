@@ -22,6 +22,8 @@ import com.example.miniamazon.ui.viewmodel.MainCategoryViewModel
 import com.example.miniamazon.util.Constants.TAG
 import com.example.miniamazon.util.GridSpaceItemDecoration
 import com.example.miniamazon.util.Status
+import com.example.miniamazon.util.gone
+import com.example.miniamazon.util.show
 import com.example.miniamazon.util.visibleNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -107,7 +109,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                 recommendedProduct.collectLatest { status ->
                     when (status) {
                         is Status.Error -> {
-                            binding.recommendedProductsProgressBar.visibility = View.GONE
+                            binding.recommendedProductsProgressBar.gone()
                             Log.e(TAG, status.message.toString())
                             Toast.makeText(
                                 requireContext(),
@@ -117,12 +119,12 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                         }
 
                         is Status.Loading -> {
-                            binding.recommendedProductsProgressBar.visibility = View.VISIBLE
+                            binding.recommendedProductsProgressBar.show()
                         }
 
                         is Status.Success -> {
                             recommendedProductsAdapter.differ.submitList(status.data)
-                            binding.recommendedProductsProgressBar.visibility = View.GONE
+                            binding.recommendedProductsProgressBar.gone()
                         }
 
                         is Status.UnSpecified -> Unit
@@ -167,11 +169,11 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     }
 
     private fun hideLoadingDialog() {
-        binding.mainCategoryProgressBar.visibility = View.GONE
+        binding.mainCategoryProgressBar.gone()
     }
 
     private fun showLoadingDialog() {
-        binding.mainCategoryProgressBar.visibility = View.VISIBLE
+        binding.mainCategoryProgressBar.show()
     }
 
     private fun initSpecialRecyclerView() {

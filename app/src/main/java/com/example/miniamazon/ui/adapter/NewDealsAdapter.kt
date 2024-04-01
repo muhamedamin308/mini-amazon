@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
+import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.NewDealsItemsBinding
 
 class NewDealsAdapter :
@@ -24,12 +25,9 @@ class NewDealsAdapter :
                     .load(product.images[0])
                     .into(imageNewDeals)
                 tvDealProductName.text = product.name
-                product.offerPercentage?.let {
-                    var remaining = 1f - it
-                    remaining *= product.price
-                    tvNewPrice.text = "$ ${String.format("%.2f", remaining)}"
-                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
+                val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
+                tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
+                tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 if (product.offerPercentage == null) {
                     tvNewPrice.visibility = View.GONE
                     tvOldPrice.alpha = 1f

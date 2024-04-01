@@ -13,6 +13,8 @@ import com.example.miniamazon.R
 import com.example.miniamazon.databinding.FragmentBaseBinding
 import com.example.miniamazon.ui.adapter.NewDealsAdapter
 import com.example.miniamazon.ui.adapter.OfferProductsAdapter
+import com.example.miniamazon.util.gone
+import com.example.miniamazon.util.show
 import com.example.miniamazon.util.visibleNavigation
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
@@ -72,19 +74,19 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
     }
 
     fun hideOfferLoading() {
-        binding.offersLoading.visibility = View.GONE
+        binding.offersLoading.gone()
     }
 
     fun hideProductsLoading() {
-        binding.productsLoading.visibility = View.GONE
+        binding.productsLoading.gone()
     }
 
     fun showOfferLoading() {
-        binding.offersLoading.visibility = View.VISIBLE
+        binding.offersLoading.show()
     }
 
     fun showProductsLoading() {
-        binding.productsLoading.visibility = View.VISIBLE
+        binding.productsLoading.show()
     }
 
 

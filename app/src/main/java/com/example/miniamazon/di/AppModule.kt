@@ -2,7 +2,7 @@ package com.example.miniamazon.di
 
 import android.app.Application
 import android.content.SharedPreferences
-import com.example.miniamazon.data.firebase.FirebaseFunctions
+import com.example.miniamazon.data.firebase.FirebaseDataLayer
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -34,8 +34,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseFunctions(
+    fun provideFirebaseData(
         firebaseAuth: FirebaseAuth,
         fireStore: FirebaseFirestore
-    ) = FirebaseFunctions(fireStore, firebaseAuth)
+    ) = FirebaseDataLayer(fireStore, firebaseAuth)
 }
