@@ -81,5 +81,5 @@ class AddressAdapter(
         }
     }
 
-    val onClick: ((Address) -> Unit)? = null
+    var onClick: ((Address) -> Unit)? = null
 }

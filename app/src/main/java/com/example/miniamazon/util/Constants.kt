@@ -6,6 +6,7 @@ object Constants {
     const val TAG = "TAGAmazon"
     const val USER_COLLECTION = "user"
     const val CART_COLLECTION = "cart"
+    const val ORDER_COLLECTION = "order"
     const val ADDRESS_COLLECTION = "address"
     const val PRODUCTS_COLLECTION = "Products"
     const val CATEGORY_COLLECTION = "category"

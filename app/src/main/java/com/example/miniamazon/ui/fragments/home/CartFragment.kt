@@ -15,6 +15,7 @@ import com.example.miniamazon.R
 import com.example.miniamazon.data.helper.QuantityChangeHelper
 import com.example.miniamazon.databinding.FragmentCartBinding
 import com.example.miniamazon.ui.adapter.MyCartAdapter
+import com.example.miniamazon.ui.dialog.showAlertDialog
 import com.example.miniamazon.ui.viewmodel.CartViewModel
 import com.example.miniamazon.util.Status
 import com.example.miniamazon.util.VerticalItemDecoration
@@ -81,20 +82,15 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.deleteDialog.collectLatest {
-                val alertDialog = AlertDialog.Builder(requireContext())
-                    .apply {
-                        setTitle("Delete item from cart")
-                        setMessage("Do you want to delete this item from cart?")
-                        setPositiveButton("Yes") { dialog, _ ->
-                            viewModel.deleteProduct(it)
-                            dialog.dismiss()
-                        }
-                        setNegativeButton("Cancel") { dialog, _ ->
-                            dialog.dismiss()
-                        }
+                requireContext().showAlertDialog(
+                    title = "Delete item from cart",
+                    message = "Do you want to delete this item from cart?",
+                    positiveButtonTitle = "Delete",
+                    negativeButtonTitle = "Cancel",
+                    positiveAction = {
+                        viewModel.deleteProduct(it)
                     }
-                alertDialog.create()
-                alertDialog.show()
+                )
             }
         }
         cartAdapter.onProductClicked = {
