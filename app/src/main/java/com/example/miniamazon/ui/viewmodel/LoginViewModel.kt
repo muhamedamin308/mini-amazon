@@ -15,44 +15,44 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val authenticationFirebase: FirebaseAuth
 ) : ViewModel() {
-    private val privateLogin = MutableSharedFlow<Status<FirebaseUser>>()
-    val login = privateLogin.asSharedFlow()
-    private val privateResetPassword = MutableSharedFlow<Status<String>>()
-    val resetPassword = privateResetPassword.asSharedFlow()
+    private val mLogin = MutableSharedFlow<Status<FirebaseUser>>()
+    val login = mLogin.asSharedFlow()
+    private val mResetPassword = MutableSharedFlow<Status<String>>()
+    val resetPassword = mResetPassword.asSharedFlow()
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            privateLogin.emit(Status.Loading())
+            mLogin.emit(Status.Loading())
         }
         authenticationFirebase
             .signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 viewModelScope.launch {
                     it?.user?.let {
-                        privateLogin.emit(Status.Success(it))
+                        mLogin.emit(Status.Success(it))
                     }
                 }
             }
             .addOnFailureListener {
                 viewModelScope.launch {
-                    privateLogin.emit(Status.Error(it.message.toString()))
+                    mLogin.emit(Status.Error(it.message.toString()))
                 }
             }
     }
 
     fun resetPassword(email: String) {
         viewModelScope.launch {
-            privateResetPassword.emit(Status.Loading())
+            mResetPassword.emit(Status.Loading())
         }
         authenticationFirebase
             .sendPasswordResetEmail(email)
             .addOnSuccessListener {
                 viewModelScope.launch {
-                    privateResetPassword.emit(Status.Success(email))
+                    mResetPassword.emit(Status.Success(email))
                 }
             }
             .addOnFailureListener {
                 viewModelScope.launch {
-                    privateResetPassword.emit(Status.Error(it.message.toString()))
+                    mResetPassword.emit(Status.Error(it.message.toString()))
                 }
             }
     }

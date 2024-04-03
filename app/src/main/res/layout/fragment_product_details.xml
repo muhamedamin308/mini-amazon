@@ -19,18 +19,18 @@
             android:outlineAmbientShadowColor="@color/cancel"
             android:outlineSpotShadowColor="@color/cancel"
             android:scrollIndicators="bottom"
+            app:layout_constraintBottom_toTopOf="@id/nested_scroll"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/nested_scroll"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/product_details_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="5dp"
             android:layout_marginStart="22dp"
             android:layout_marginTop="22dp"
+            android:padding="5dp"
             android:src="@drawable/back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +41,10 @@
             android:layout_height="0dp"
             android:background="@drawable/product_details_bg"
             android:paddingTop="35dp"
-            app:layout_constraintTop_toBottomOf="@id/viewpagerProductImage"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewpagerProductImage">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/quicksand_bold"
+                            android:fontFamily="@font/montserrat_bold"
                             android:text="LG Washer Machine"
                             android:textColor="@color/brown"
                             android:textSize="22sp" />
@@ -83,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/quicksand_bold"
+                            android:fontFamily="@font/montserrat_regular"
                             android:text="LG Washer Machine for your all necessary bathroom jobs."
                             android:textColor="@color/category"
                             android:textSize="14sp" />
@@ -103,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:alpha="0.6"
-                            android:fontFamily="@font/quicksand_bold"
+                            android:fontFamily="@font/ubuntu_medium"
                             android:text="$2000"
                             android:textColor="@color/brown" />
 
@@ -112,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/quicksand_bold"
+                            android:fontFamily="@font/ubuntu_bold"
                             android:text="$1890"
                             android:textColor="@color/brown"
                             android:textSize="22sp" />
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
-                    android:fontFamily="@font/quicksand_bold"
+                    android:fontFamily="@font/montserrat_semi_bold"
                     android:text="Select Size"
                     android:textColor="@color/brown"
                     android:textSize="20sp"
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/quicksand_bold"
+                    android:fontFamily="@font/montserrat_semi_bold"
                     android:text="Select Color"
                     android:textColor="@color/brown"
                     android:textSize="20sp"
@@ -190,6 +190,7 @@
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginVertical="20dp"
                     android:backgroundTint="@color/cancel"
+                    android:fontFamily="@font/montserrat_semi_bold"
                     android:gravity="center"
                     android:text="Add to cart"
                     android:textColor="@color/main_background"

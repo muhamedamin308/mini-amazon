@@ -1,4 +1,4 @@
-package com.example.miniamazon.ui.fragments.home.categories
+package com.example.miniamazon.ui.fragments.home.category
 
 import android.os.Bundle
 import android.view.View
@@ -16,12 +16,12 @@ import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
-class VideoGamesCategoryFragment : BaseCategoryFragment() {
+class GroceryCategoryFragment: BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
 
     private val viewModel by viewModels<CategoriesViewModel> {
-        BaseCategoryViewModelFactory(fireStore, Category.VideoGame)
+        BaseCategoryViewModelFactory(fireStore, Category.Grocery)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintEnd_toEndOf="@+id/imageSpecialProduct"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/gradiant_special_product" />
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Scotch Premium"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -54,7 +54,7 @@
             android:id="@+id/tvSpecialProductPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/ubuntu_bold"
             android:text="$ 1600"
             android:textColor="@color/white"
             android:textSize="13sp"
@@ -69,7 +69,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="8dp"
             android:alpha="0.7"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="@font/ubuntu_medium"
             android:text="$ 1900"
             android:textColor="@color/white"
             android:textSize="11sp"
@@ -82,14 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_begin="72dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_begin="108dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/quicksand_bold"
                 android:text="New Deals"
+                android:fontFamily="@font/montserrat_semi_bold"
                 android:textColor="@color/brown"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,10 +74,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/quicksand_bold"
                 android:text="Recommended For You"
                 android:textColor="@color/brown"
                 android:textSize="22sp"
+                android:fontFamily="@font/montserrat_semi_bold"
                 app:layout_constraintStart_toStartOf="@id/best_products_tv"
                 app:layout_constraintTop_toBottomOf="@id/recyclerNewDeals" />
 

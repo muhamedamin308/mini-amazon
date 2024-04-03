@@ -1,4 +1,4 @@
-package com.example.miniamazon.ui.fragments.home.categories
+package com.example.miniamazon.ui.fragments.home.category
 
 import android.os.Bundle
 import android.util.Log

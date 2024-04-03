@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
@@ -15,8 +16,8 @@ class IntroductionViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
-    private val navigateState = MutableStateFlow(0)
-    val stateFlow: StateFlow<Int> = navigateState
+    private val mStateFlow = MutableStateFlow(0)
+    val stateFlow = mStateFlow.asStateFlow()
 
     init {
         val isStarted = sharedPreferences
@@ -27,11 +28,11 @@ class IntroductionViewModel @Inject constructor(
         val user = firebaseAuth.currentUser
         if (user != null) {
             viewModelScope.launch {
-                navigateState.emit(Introduction.SHOPPING_ACTIVITY)
+                mStateFlow.emit(Introduction.SHOPPING_ACTIVITY)
             }
         } else if (isStarted) {
             viewModelScope.launch {
-                navigateState.emit(Introduction.ACCOUNT_OPTIONS)
+                mStateFlow.emit(Introduction.ACCOUNT_OPTIONS)
             }
         } else {
             Unit

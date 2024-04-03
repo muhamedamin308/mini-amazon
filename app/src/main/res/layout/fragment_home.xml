@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/montserrat_medium"
                 android:paddingVertical="10dp"
                 android:paddingStart="20dp"
                 android:singleLine="true"

@@ -23,15 +23,15 @@ class RegisterViewModel @Inject constructor(
     private val authenticationFirebase: FirebaseAuth,
     private val fireStore: FirebaseFirestore
 ) : ViewModel() {
-    private val privateRegister =
+    private val mRegister =
         MutableStateFlow<Status<User>>(Status.UnSpecified())
-    val register: Flow<Status<User>> = privateRegister
-    private val privateValidation = Channel<RegisterFieldState>()
-    val validation = privateValidation.receiveAsFlow()
+    val register: Flow<Status<User>> = mRegister
+    private val mValidation = Channel<RegisterFieldState>()
+    val validation = mValidation.receiveAsFlow()
     fun createNewAccount(newUser: User, password: String) {
         val userValidation = validateUser(newUser, password)
         if (userValidation) {
-            runBlocking { privateRegister.emit(Status.Loading()) }
+            runBlocking { mRegister.emit(Status.Loading()) }
             authenticationFirebase.createUserWithEmailAndPassword(newUser.email, password)
                 .addOnSuccessListener {
                     it.user?.let { firebaseUser ->
@@ -39,14 +39,14 @@ class RegisterViewModel @Inject constructor(
                     }
                 }
                 .addOnFailureListener {
-                    privateRegister.value = Status.Error(it.message.toString())
+                    mRegister.value = Status.Error(it.message.toString())
                 }
         } else {
             val registerFailedState = RegisterFieldState(
                 validateEmail(newUser.email),
                 validatePassword(password)
             )
-            runBlocking { privateValidation.send(registerFailedState) }
+            runBlocking { mValidation.send(registerFailedState) }
         }
     }
 
@@ -55,9 +55,9 @@ class RegisterViewModel @Inject constructor(
             .document(userId)
             .set(user)
             .addOnSuccessListener {
-                privateRegister.value = Status.Success(user)
+                mRegister.value = Status.Success(user)
             }.addOnFailureListener {
-                privateRegister.value = Status.Error(it.message.toString())
+                mRegister.value = Status.Error(it.message.toString())
             }
     }
 

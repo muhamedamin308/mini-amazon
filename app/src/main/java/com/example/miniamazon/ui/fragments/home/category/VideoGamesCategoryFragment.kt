@@ -1,4 +1,4 @@
-package com.example.miniamazon.ui.fragments.home.categories
+package com.example.miniamazon.ui.fragments.home.category
 
 import android.os.Bundle
 import android.view.View
@@ -13,15 +13,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
+
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
-class ElectronicsCategoryFragment : BaseCategoryFragment() {
-
+class VideoGamesCategoryFragment : BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
 
     private val viewModel by viewModels<CategoriesViewModel> {
-        BaseCategoryViewModelFactory(fireStore, Category.Electronics)
+        BaseCategoryViewModelFactory(fireStore, Category.VideoGame)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

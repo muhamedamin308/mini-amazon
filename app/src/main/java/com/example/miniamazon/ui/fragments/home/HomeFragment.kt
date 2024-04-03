@@ -8,14 +8,13 @@ import androidx.fragment.app.Fragment
 import com.example.miniamazon.R
 import com.example.miniamazon.ui.adapter.HomeViewPagerAdapter
 import com.example.miniamazon.databinding.FragmentHomeBinding
-import com.example.miniamazon.ui.fragments.home.categories.AppliancesCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.ElectronicsCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.FashionCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.GroceryCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.MainCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.PerfumesCategoryFragment
-import com.example.miniamazon.ui.fragments.home.categories.VideoGamesCategoryFragment
-import com.google.android.material.tabs.TabLayout
+import com.example.miniamazon.ui.fragments.home.category.AppliancesCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.ElectronicsCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.FashionCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.GroceryCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.MainCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.PerfumesCategoryFragment
+import com.example.miniamazon.ui.fragments.home.category.VideoGamesCategoryFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment(R.layout.fragment_home) {

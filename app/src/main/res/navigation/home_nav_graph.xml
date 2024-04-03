@@ -35,12 +35,19 @@
         <action
             android:id="@+id/action_cartFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_billingFragment"
+            app:destination="@id/billingFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.miniamazon.ui.fragments.home.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.miniamazon.ui.fragments.home.ProductDetailsFragment"
@@ -49,5 +56,25 @@
         <argument
             android:name="product"
             app:argType="com.example.miniamazon.data.classes.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.miniamazon.ui.fragments.home.payment.AddressFragment"
+        android:label="AddressFragment"
+        tools:layout="@layout/fragment_address" />
+    <fragment
+        android:id="@+id/billingFragment"
+        android:name="com.example.miniamazon.ui.fragments.home.payment.BillingFragment"
+        android:label="BillingFragment"
+        tools:layout="@layout/fragment_billing">
+        <action
+            android:id="@+id/action_billingFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <argument
+            android:name="totalPrice"
+            app:argType="float" />
+        <argument
+            android:name="cart"
+            app:argType="com.example.miniamazon.data.classes.Cart[]" />
     </fragment>
 </navigation>

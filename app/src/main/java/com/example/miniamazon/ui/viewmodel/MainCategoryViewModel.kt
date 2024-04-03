@@ -3,6 +3,7 @@ package com.example.miniamazon.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Product
+import com.example.miniamazon.data.helper.PagingInfoHelper
 import com.example.miniamazon.util.Constants.Categories.NEW_DEALS
 import com.example.miniamazon.util.Constants.Categories.SPECIAL_PRODUCTS
 import com.example.miniamazon.util.Constants.PRODUCTS_COLLECTION
@@ -10,7 +11,7 @@ import com.example.miniamazon.util.Status
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,22 +19,19 @@ import javax.inject.Inject
 class MainCategoryViewModel @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) : ViewModel() {
-    private val specialProductState =
+    private val mSpecialProduct =
         MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
-    val specialProduct: StateFlow<Status<List<Product>>> =
-        specialProductState
+    val specialProduct = mSpecialProduct.asStateFlow()
 
-    private val recommendedProductState =
+    private val mRecommendedProduct =
         MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
-    val recommendedProduct: StateFlow<Status<List<Product>>> =
-        recommendedProductState
+    val recommendedProduct = mRecommendedProduct.asStateFlow()
 
-    private val newDealsState =
+    private val mNewDeals =
         MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
-    val newDeals: StateFlow<Status<List<Product>>> =
-        newDealsState
+    val newDeals = mNewDeals.asStateFlow()
 
-    private val paging = PagingInfo()
+    private val paging = PagingInfoHelper()
 
     init {
         fetchSpecialProduct()
@@ -43,7 +41,7 @@ class MainCategoryViewModel @Inject constructor(
 
     private fun fetchSpecialProduct() {
         viewModelScope.launch {
-            specialProductState.emit(Status.Loading())
+            mSpecialProduct.emit(Status.Loading())
         }
         fireStore.collection(PRODUCTS_COLLECTION)
             .whereEqualTo("category", SPECIAL_PRODUCTS)
@@ -51,12 +49,12 @@ class MainCategoryViewModel @Inject constructor(
             .addOnSuccessListener {
                 val specialProducts = it.toObjects(Product::class.java)
                 viewModelScope.launch {
-                    specialProductState.emit(Status.Success(specialProducts))
+                    mSpecialProduct.emit(Status.Success(specialProducts))
                 }
             }
             .addOnFailureListener {
                 viewModelScope.launch {
-                    specialProductState.emit(Status.Error(it.message.toString()))
+                    mSpecialProduct.emit(Status.Error(it.message.toString()))
                 }
             }
     }
@@ -64,7 +62,7 @@ class MainCategoryViewModel @Inject constructor(
     fun fetchRecommendedProducts() {
         if (!paging.isPagingEnd) {
             viewModelScope.launch {
-                recommendedProductState.emit(Status.Loading())
+                mRecommendedProduct.emit(Status.Loading())
             }
             fireStore.collection(PRODUCTS_COLLECTION)
                 .limit(paging.viewPosition * 10)
@@ -74,13 +72,13 @@ class MainCategoryViewModel @Inject constructor(
                     paging.isPagingEnd = recommendedProducts == paging.oldProducts
                     paging.oldProducts = recommendedProducts
                     viewModelScope.launch {
-                        recommendedProductState.emit(Status.Success(recommendedProducts))
+                        mRecommendedProduct.emit(Status.Success(recommendedProducts))
                     }
                     paging.viewPosition++
                 }
                 .addOnFailureListener {
                     viewModelScope.launch {
-                        recommendedProductState.emit(Status.Error(it.message.toString()))
+                        mRecommendedProduct.emit(Status.Error(it.message.toString()))
                     }
                 }
         }
@@ -88,7 +86,7 @@ class MainCategoryViewModel @Inject constructor(
 
     private fun fetchNewDeals() {
         viewModelScope.launch {
-            newDealsState.emit(Status.Loading())
+            mNewDeals.emit(Status.Loading())
         }
         fireStore.collection(PRODUCTS_COLLECTION)
             .whereEqualTo("category", NEW_DEALS)
@@ -96,19 +94,13 @@ class MainCategoryViewModel @Inject constructor(
             .addOnSuccessListener {
                 val newDeals = it.toObjects(Product::class.java)
                 viewModelScope.launch {
-                    newDealsState.emit(Status.Success(newDeals))
+                    mNewDeals.emit(Status.Success(newDeals))
                 }
             }
             .addOnFailureListener {
                 viewModelScope.launch {
-                    newDealsState.emit(Status.Error(it.message.toString()))
+                    mNewDeals.emit(Status.Error(it.message.toString()))
                 }
             }
     }
 }
-
-internal data class PagingInfo(
-    var viewPosition: Long = 1,
-    var oldProducts: List<Product> = emptyList(),
-    var isPagingEnd: Boolean = false
-)

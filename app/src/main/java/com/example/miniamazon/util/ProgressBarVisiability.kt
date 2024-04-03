@@ -6,7 +6,6 @@ import android.widget.ProgressBar
 fun ProgressBar.gone() {
     visibility = View.GONE
 }
-
 fun ProgressBar.show() {
     visibility = View.VISIBLE
 }

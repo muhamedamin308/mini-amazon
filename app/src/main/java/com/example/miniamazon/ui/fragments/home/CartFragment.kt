@@ -27,6 +27,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private lateinit var binding: FragmentCartBinding
     private val cartAdapter by lazy { MyCartAdapter() }
     private val viewModel by activityViewModels<CartViewModel>()
+    private var totalPrice = 0f
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +44,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         lifecycleScope.launchWhenStarted {
             viewModel.totalPrice.collectLatest { price ->
                 price?.let {
+                    totalPrice = it
                     binding.totalPriceTv.text = "$ $price"
                 }
             }
@@ -104,6 +106,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         }
         cartAdapter.onMinusClicked = {
             viewModel.changeQuantity(it, QuantityChangeHelper.DECREASE)
+        }
+        binding.checkoutButton.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice, cartAdapter.differ.currentList.toTypedArray())
+            findNavController().navigate(action)
         }
     }
 
