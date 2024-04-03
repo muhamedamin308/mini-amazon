@@ -21,6 +21,8 @@ import com.example.miniamazon.ui.adapter.ProductDetailsViewPagerAdapter
 import com.example.miniamazon.ui.adapter.ProductSizesAdapter
 import com.example.miniamazon.ui.viewmodel.ProductDetailsViewModel
 import com.example.miniamazon.util.Status
+import com.example.miniamazon.util.gone
+import com.example.miniamazon.util.hide
 import com.example.miniamazon.util.invisibleNavigation
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -125,16 +127,16 @@ class ProductDetailsFragment : Fragment() {
                 productOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
             if (product.offerPercentage == null) {
-                productPrice.visibility = View.GONE
+                productPrice.gone()
                 productOldPrice.alpha = 1f
                 productOldPrice.textSize = 22f
             }
             productOldPrice.text = "$ ${product.price}"
             productDetailsBack.setOnClickListener { findNavController().navigateUp() }
             if (product.colors.isNullOrEmpty())
-                colorsTv.visibility = View.INVISIBLE
+                colorsTv.hide()
             if (product.sizes.isNullOrEmpty())
-                sizesTv.visibility = View.INVISIBLE
+                sizesTv.hide()
         }
     }
 }

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
 import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.NewDealsItemsBinding
+import com.example.miniamazon.util.gone
 
 class NewDealsAdapter :
     RecyclerView.Adapter<NewDealsAdapter.NewDealsViewHolder>() {
@@ -29,7 +30,7 @@ class NewDealsAdapter :
                 tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
                 tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 if (product.offerPercentage == null) {
-                    tvNewPrice.visibility = View.GONE
+                    tvNewPrice.gone()
                     tvOldPrice.alpha = 1f
                     tvOldPrice.textSize = 15f
                 }

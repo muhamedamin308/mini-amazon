@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
 import com.example.miniamazon.databinding.ItemSpecialOffersLayoutBinding
+import com.example.miniamazon.util.gone
 
 class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProductViewHolder>() {
     inner class OfferProductViewHolder(
@@ -30,7 +31,7 @@ class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProd
                     tvSpecialProductOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 if (product.offerPercentage == null) {
-                    tvSpecialProductPrice.visibility = View.GONE
+                    tvSpecialProductPrice.gone()
                     tvSpecialProductOldPrice.alpha = 1f
                     tvSpecialProductOldPrice.textSize = 13f
                 }

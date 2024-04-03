@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.Address
 import com.example.miniamazon.databinding.ItemAddressLayoutBinding
+import com.example.miniamazon.util.hide
+import com.example.miniamazon.util.show
 
 class AddressAdapter(
     private val context: Context
@@ -24,7 +26,7 @@ class AddressAdapter(
             binding.apply {
                 addressTv.text = address.homeTitle
                 if (isSelected) {
-                    imageAddressBg.visibility = View.VISIBLE
+                    imageAddressBg.show()
                     addressTv.setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -32,7 +34,7 @@ class AddressAdapter(
                         )
                     )
                 } else {
-                    imageAddressBg.visibility = View.INVISIBLE
+                    imageAddressBg.hide()
                     addressTv.setTextColor(
                         ContextCompat.getColor(
                             context,

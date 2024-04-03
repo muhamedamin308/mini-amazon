@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.databinding.ColorItemViewBinding
+import com.example.miniamazon.util.hide
+import com.example.miniamazon.util.show
 
 class ProductColorAdapter : RecyclerView.Adapter<ProductColorAdapter.ColorsViewHolder>() {
     private var selectedColor = -1
@@ -19,11 +21,11 @@ class ProductColorAdapter : RecyclerView.Adapter<ProductColorAdapter.ColorsViewH
             binding.color.setImageDrawable(imageDrawable)
             if (position == selectedColor) {
                 binding.apply {
-                    selectedImage.visibility = View.VISIBLE
+                    selectedImage.show()
                 }
             } else {
                 binding.apply {
-                    selectedImage.visibility = View.INVISIBLE
+                    selectedImage.hide()
                 }
             }
         }

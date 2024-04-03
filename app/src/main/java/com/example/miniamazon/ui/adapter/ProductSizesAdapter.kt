@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.R
 import com.example.miniamazon.databinding.SizesItemViewBinding
+import com.example.miniamazon.util.hide
+import com.example.miniamazon.util.show
 
 class ProductSizesAdapter(
     private val context: Context
@@ -23,7 +25,7 @@ class ProductSizesAdapter(
             binding.productSizeTv.text = productSize
             if (position == selectedSize) {
                 binding.apply {
-                    imageProductSizes.visibility = View.VISIBLE
+                    imageProductSizes.show()
                     productSizeTv.setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -33,7 +35,7 @@ class ProductSizesAdapter(
                 }
             } else {
                 binding.apply {
-                    imageProductSizes.visibility = View.INVISIBLE
+                    imageProductSizes.hide()
                     productSizeTv.setTextColor(
                         ContextCompat.getColor(
                             context,

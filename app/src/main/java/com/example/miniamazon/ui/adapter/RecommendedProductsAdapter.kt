@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
 import com.example.miniamazon.databinding.RecommendedItemsBinding
+import com.example.miniamazon.util.gone
 
 class RecommendedProductsAdapter :
     RecyclerView.Adapter<RecommendedProductsAdapter.RecommendedProductsViewHolder>() {
@@ -31,7 +32,7 @@ class RecommendedProductsAdapter :
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 if (product.offerPercentage == null) {
-                    tvNewPrice.visibility = View.GONE
+                    tvNewPrice.gone()
                     tvPrice.alpha = 1f
                     tvPrice.textSize = 15f
                 }

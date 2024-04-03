@@ -77,4 +77,9 @@
             android:name="cart"
             app:argType="com.example.miniamazon.data.classes.Cart[]" />
     </fragment>
+    <fragment
+        android:id="@+id/userAccountFragment"
+        android:name="com.example.miniamazon.ui.fragments.settings.UserAccountFragment"
+        android:label="UserAccountFragment"
+        tools:layout="@layout/fragment_user_account"/>
 </navigation>

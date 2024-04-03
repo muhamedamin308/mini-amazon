@@ -11,6 +11,7 @@ object Constants {
     const val PRODUCTS_COLLECTION = "Products"
     const val CATEGORY_COLLECTION = "category"
     const val IS_OFFER_EXIST = "offerPercentage"
+    const val PROFILE_STORAGE_PATH = "profileImages"
 
     data object Introduction {
         const val INTRODUCTION_SHARED_PREFERENCES = "IntroductionSP"

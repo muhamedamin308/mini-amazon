@@ -20,6 +20,7 @@ import com.example.miniamazon.ui.viewmodel.CartViewModel
 import com.example.miniamazon.util.Status
 import com.example.miniamazon.util.VerticalItemDecoration
 import com.example.miniamazon.util.gone
+import com.example.miniamazon.util.show
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 
@@ -111,17 +112,17 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private fun setUpCart() {
         binding.apply {
-            clEmptyCart.visibility = View.GONE
-            nestedRecycler.visibility = View.VISIBLE
-            linearLayout2.visibility = View.VISIBLE
+            clEmptyCart.gone()
+            nestedRecycler.show()
+            linearLayout2.show()
         }
     }
 
     private fun cartEmptySetUp() {
         binding.apply {
-            clEmptyCart.visibility = View.VISIBLE
-            nestedRecycler.visibility = View.GONE
-            linearLayout2.visibility = View.GONE
+            clEmptyCart.show()
+            nestedRecycler.gone()
+            linearLayout2.gone()
         }
     }
 

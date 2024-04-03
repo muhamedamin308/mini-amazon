@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Cart
 import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.ItemBillingLayoutBinding
+import com.example.miniamazon.util.gone
 
 class CartBillingAdapter : RecyclerView.Adapter<CartBillingAdapter.CartBillingViewHolder>() {
     inner class CartBillingViewHolder(
@@ -35,7 +36,7 @@ class CartBillingAdapter : RecyclerView.Adapter<CartBillingAdapter.CartBillingVi
                     )
                 )
                 productSizeTv.text =
-                    cart.selectedSize ?: "".also { cardView.visibility = View.GONE }
+                    cart.selectedSize ?: "".also { cardView.gone() }
             }
         }
     }

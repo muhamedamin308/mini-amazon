@@ -9,11 +9,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 fun Fragment.invisibleNavigation() {
     val navigationView =
         (activity as ShoppingActivity).findViewById<BottomNavigationView>(R.id.bottomNavigation)
-    navigationView.visibility = View.GONE
+    navigationView.gone()
 }
 
 fun Fragment.visibleNavigation() {
     val navigationView =
         (activity as ShoppingActivity).findViewById<BottomNavigationView>(R.id.bottomNavigation)
-    navigationView.visibility = View.VISIBLE
+    navigationView.show()
 }

@@ -59,6 +59,14 @@
         <item name="android:fontFamily">@font/montserrat_semi_bold</item>
     </style>
 
+    <style name="editTextProfile">
+        <item name="android:background">@drawable/auth_g</item>
+        <item name="singleLine">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/h2TextSize</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
 
     <dimen name="h4TextSize">35sp</dimen>
     <dimen name="h2TextSize">17sp</dimen>

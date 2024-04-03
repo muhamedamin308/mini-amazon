@@ -13,6 +13,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import com.example.miniamazon.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,4 +39,8 @@ object AppModule {
         firebaseAuth: FirebaseAuth,
         fireStore: FirebaseFirestore
     ) = FirebaseDataLayer(fireStore, firebaseAuth)
+
+    @Provides
+    @Singleton
+    fun provideStorage() = FirebaseStorage.getInstance().reference
 }
