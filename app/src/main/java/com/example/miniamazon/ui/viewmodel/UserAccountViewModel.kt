@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream
 import java.util.UUID
 import javax.inject.Inject
 
+@Suppress("DEPRECATION")
 @HiltViewModel
 class UserAccountViewModel @Inject constructor(
     private val auth: FirebaseAuth,
@@ -62,10 +63,10 @@ class UserAccountViewModel @Inject constructor(
     }
 
     fun updateUser(user: User, userImageUri: Uri?) {
-        val areInputValid = validateEmail(user.email) is RegisterValidation.Success &&
+        val areInputsValid = validateEmail(user.email) is RegisterValidation.Success &&
                 user.firstName.trim().isNotEmpty() &&
                 user.lastName.trim().isNotEmpty()
-        if (!areInputValid) {
+        if (!areInputsValid) {
             viewModelScope.launch { mProfileEdit.emit(Status.Error("Check your input!")) }
             return
         }

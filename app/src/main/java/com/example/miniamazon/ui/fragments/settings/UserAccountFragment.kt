@@ -33,8 +33,8 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class UserAccountFragment : Fragment() {
     private lateinit var binding: FragmentUserAccountBinding
-    private val viewModel by viewModels<UserAccountViewModel>()
-    private val authViewModel by viewModels<LoginViewModel>()
+    private val userAccountViewModel by viewModels<UserAccountViewModel>()
+    private val loginViewModel by viewModels<LoginViewModel>()
     private var userProfileImageUri: Uri? = null
     private lateinit var imageActivityResultLauncher: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +60,7 @@ class UserAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            viewModel.profile.collectLatest {
+            userAccountViewModel.profile.collectLatest {
                 when (it) {
                     is Status.Error -> {
                         showUserAfterLoading()
@@ -82,7 +82,7 @@ class UserAccountFragment : Fragment() {
             }
         }
         lifecycleScope.launchWhenStarted {
-            viewModel.profileEdit.collectLatest {
+            userAccountViewModel.profileEdit.collectLatest {
                 when (it) {
                     is Status.Error -> {
                         binding.continueButton.revertAnimation()
@@ -104,7 +104,7 @@ class UserAccountFragment : Fragment() {
             }
         }
         lifecycleScope.launchWhenStarted {
-            authViewModel.resetPassword.collect {
+            loginViewModel.resetPassword.collect {
                 when (it) {
 
                     is Status.Loading -> Unit
@@ -135,7 +135,7 @@ class UserAccountFragment : Fragment() {
                 val lastName = names[1].trim()
                 val email = emailEt.text.toString().trim()
                 val user = User(firstName, lastName, email)
-                viewModel.updateUser(user, userProfileImageUri)
+                userAccountViewModel.updateUser(user, userProfileImageUri)
             }
         }
         binding.userImageProfileEdit.setOnClickListener {
@@ -147,7 +147,7 @@ class UserAccountFragment : Fragment() {
         }
         binding.changeForgetPassword.setOnClickListener {
             setUpBottomSheetDialog {
-                authViewModel.resetPassword(it)
+                loginViewModel.resetPassword(it)
             }
         }
     }

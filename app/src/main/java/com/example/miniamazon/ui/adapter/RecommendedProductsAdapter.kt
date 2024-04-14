@@ -3,13 +3,13 @@ package com.example.miniamazon.ui.adapter
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
+import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.RecommendedItemsBinding
 import com.example.miniamazon.util.gone
 
@@ -25,16 +25,14 @@ class RecommendedProductsAdapter :
                 Glide.with(itemView)
                     .load(product.images[0])
                     .into(imageProduct)
-                product.offerPercentage?.let {
-                    var newPrice = 1f - it
-                    newPrice *= product.price
-                    tvNewPrice.text = "$ ${String.format("%.2f", newPrice)}"
-                    tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
-                if (product.offerPercentage == null) {
+                val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
+                if (priceAfterOffer == null) {
                     tvNewPrice.gone()
                     tvPrice.alpha = 1f
                     tvPrice.textSize = 15f
+                } else {
+                    tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
+                    tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 tvPrice.text = "$ ${product.price}"
             }

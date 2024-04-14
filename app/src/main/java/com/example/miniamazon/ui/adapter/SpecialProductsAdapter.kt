@@ -32,6 +32,7 @@ class SpecialProductsAdapter :
                     .into(imageSpecialProduct)
                 tvSpecialProductName.text = product.name
                 tvSpecialProductPrice.text = "$ ${product.price}"
+                // TODO: Add the product to cart when click on the button
             }
         }
     }

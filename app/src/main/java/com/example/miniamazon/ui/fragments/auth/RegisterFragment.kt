@@ -1,7 +1,6 @@
 package com.example.miniamazon.ui.fragments.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,14 @@ import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.User
 import com.example.miniamazon.databinding.FragmentRegisterBinding
 import com.example.miniamazon.ui.viewmodel.RegisterViewModel
-import com.example.miniamazon.util.Constants.TAG
 import com.example.miniamazon.util.RegisterValidation
 import com.example.miniamazon.util.Status
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -58,14 +58,17 @@ class RegisterFragment : Fragment() {
                     }
 
                     is Status.Success -> {
-                        Log.i(TAG, it.data.toString())
                         binding.continueButton.revertAnimation()
                         findNavController().navigate(R.id.action_registerFragment2_to_loginFragment2)
                     }
 
                     is Status.Error -> {
-                        Log.e(TAG, it.message.toString())
                         binding.continueButton.revertAnimation()
+                        Snackbar.make(
+                            requireView(),
+                            "Error: ${it.message.toString()}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
 
                     is Status.UnSpecified -> Unit

@@ -1,4 +1,4 @@
-package com.example.miniamazon.ui.fragments.home.payment
+package com.example.miniamazon.ui.fragments.home.process
 
 import android.os.Bundle
 import android.view.LayoutInflater

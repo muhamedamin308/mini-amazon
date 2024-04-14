@@ -27,4 +27,11 @@
     <color name="cancel">#76ABAE</color>
     <color name="brown">#EEEEEE</color>
     <color name="selected_color">#87A922</color>
+
+    <color name="ordered">#3498db</color>
+    <color name="delivered">#2ecc71</color>
+    <color name="confirmed">#f39c12</color>
+    <color name="canceled">#e74c3c</color>
+    <color name="shipped">#9b59b6</color>
+    <color name="returned">#34495e</color>
 </resources>

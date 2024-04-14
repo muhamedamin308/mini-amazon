@@ -25,7 +25,7 @@ class OrderViewModel @Inject constructor(
     val order = mOrder.asStateFlow()
     fun placeOrder(order: Order) {
         viewModelScope.launch { mOrder.emit(Status.Loading()) }
-        fireStore.runBatch { batch ->
+        fireStore.runBatch {
             // Add the order to the user order collection for user history
             fireStore.collection(USER_COLLECTION)
                 .document(auth.uid!!)

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.miniamazon.data.classes.Product
+import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.ItemSpecialOffersLayoutBinding
 import com.example.miniamazon.util.gone
 
@@ -24,16 +25,14 @@ class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProd
                     .load(product.images[0])
                     .into(imageSpecialProduct)
                 tvSpecialProductName.text = product.name
-                product.offerPercentage?.let {
-                    var newPrice = 1f - it
-                    newPrice *= product.price
-                    tvSpecialProductPrice.text = "$ ${String.format("%.2f", newPrice)}"
-                    tvSpecialProductOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
-                if (product.offerPercentage == null) {
+                val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
+                if (priceAfterOffer == null) {
                     tvSpecialProductPrice.gone()
                     tvSpecialProductOldPrice.alpha = 1f
                     tvSpecialProductOldPrice.textSize = 13f
+                } else {
+                    tvSpecialProductPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
+                    tvSpecialProductOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 tvSpecialProductOldPrice.text = "$ ${product.price}"
             }

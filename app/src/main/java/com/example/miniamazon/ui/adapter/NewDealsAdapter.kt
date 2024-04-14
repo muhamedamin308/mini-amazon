@@ -3,7 +3,6 @@ package com.example.miniamazon.ui.adapter
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -27,12 +26,13 @@ class NewDealsAdapter :
                     .into(imageNewDeals)
                 tvDealProductName.text = product.name
                 val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
-                tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
-                tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                if (product.offerPercentage == null) {
+                if (priceAfterOffer == null) {
                     tvNewPrice.gone()
                     tvOldPrice.alpha = 1f
                     tvOldPrice.textSize = 15f
+                } else {
+                    tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
+                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 tvOldPrice.text = "$ ${product.price}"
             }

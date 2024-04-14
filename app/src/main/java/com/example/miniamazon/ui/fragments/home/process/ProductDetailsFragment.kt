@@ -1,4 +1,4 @@
-package com.example.miniamazon.ui.fragments.home
+package com.example.miniamazon.ui.fragments.home.process
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.Cart
 import com.example.miniamazon.data.classes.Product
+import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.FragmentProductDetailsBinding
 import com.example.miniamazon.ui.adapter.ProductColorAdapter
 import com.example.miniamazon.ui.adapter.ProductDetailsViewPagerAdapter
@@ -120,16 +121,14 @@ class ProductDetailsFragment : Fragment() {
         binding.apply {
             productName.text = product.name
             productDescription.text = product.description
-            product.offerPercentage?.let {
-                var newPrice = 1f - it
-                newPrice *= product.price
-                productPrice.text = "$ ${String.format("%.2f", newPrice)}"
-                productOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            }
-            if (product.offerPercentage == null) {
+            val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
+            if (priceAfterOffer == null) {
                 productPrice.gone()
                 productOldPrice.alpha = 1f
                 productOldPrice.textSize = 22f
+            } else {
+                productPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
+                productOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
             productOldPrice.text = "$ ${product.price}"
             productDetailsBack.setOnClickListener { findNavController().navigateUp() }

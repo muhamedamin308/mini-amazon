@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -28,6 +27,7 @@ class MyCartAdapter : RecyclerView.Adapter<MyCartAdapter.MyCartViewHolder>() {
                 cartProductNameTv.text = cart.products.name
                 val priceAfterOffer =
                     cart.products.offerPercentage.getProductPrice(cart.products.price)
+                        ?: cart.products.price
                 cartProductPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
                 quantityTv.text = cart.quantity.toString()
                 productImageColor.setImageDrawable(

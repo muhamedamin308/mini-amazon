@@ -29,6 +29,7 @@ class CartBillingAdapter : RecyclerView.Adapter<CartBillingAdapter.CartBillingVi
                 quantityTv.text = cart.quantity.toString()
                 val priceAfterOffer =
                     cart.products.offerPercentage.getProductPrice(cart.products.price)
+                        ?: cart.products.price
                 cartProductPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
                 productImageColor.setImageDrawable(
                     ColorDrawable(
