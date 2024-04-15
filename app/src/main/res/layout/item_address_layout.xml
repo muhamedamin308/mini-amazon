@@ -34,7 +34,7 @@
             android:text="Ain Shams"
             android:textAlignment="center"
             android:textColor="@color/cancel"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

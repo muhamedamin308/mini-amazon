@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.Address
 import com.example.miniamazon.databinding.FragmentAddressBinding
 import com.example.miniamazon.ui.viewmodel.AddressViewModel
 import com.example.miniamazon.util.Status
+import com.example.miniamazon.util.gone
 import com.example.miniamazon.util.hide
 import com.example.miniamazon.util.show
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +24,7 @@ import kotlinx.coroutines.flow.collectLatest
 class AddressFragment : Fragment(R.layout.fragment_address) {
     private lateinit var binding: FragmentAddressBinding
     private val viewModel by viewModels<AddressViewModel>()
+    private val args by navArgs<AddressFragmentArgs>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launchWhenStarted {
@@ -71,6 +74,19 @@ class AddressFragment : Fragment(R.layout.fragment_address) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val address = args.address
+        if (address == null) {
+            binding.deleteAddressBtn.gone()
+        } else {
+            binding.apply {
+                addressLocationHome.setText(address.homeTitle)
+                fullName.setText(address.fullName)
+                streetEt.setText(address.street)
+                cityEt.setText(address.city)
+                phoneEt.setText(address.phone)
+                stateEt.setText(address.state)
+            }
+        }
         binding.apply {
             saveAddressBtn.setOnClickListener {
                 val addressHome = addressLocationHome.text.toString()
@@ -79,9 +95,10 @@ class AddressFragment : Fragment(R.layout.fragment_address) {
                 val phone = phoneEt.text.toString()
                 val city = cityEt.text.toString()
                 val state = stateEt.text.toString()
-                val address = Address(addressHome, street, city, state, fullName, phone)
-                viewModel.addAddress(address)
+                val newAddress = Address(addressHome, street, city, state, fullName, phone)
+                viewModel.addAddress(newAddress)
             }
+            exit.setOnClickListener { findNavController().navigateUp() }
         }
     }
 }

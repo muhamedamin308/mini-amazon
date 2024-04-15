@@ -38,6 +38,7 @@ class CartBillingAdapter : RecyclerView.Adapter<CartBillingAdapter.CartBillingVi
                 )
                 productSizeTv.text =
                     cart.selectedSize ?: "".also { cardView.gone() }
+                cartProductCategoryTv.text = cart.products.category
             }
         }
     }

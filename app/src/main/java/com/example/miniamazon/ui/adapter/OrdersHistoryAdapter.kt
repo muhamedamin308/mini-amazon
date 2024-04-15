@@ -25,7 +25,7 @@ class OrdersHistoryAdapter : RecyclerView.Adapter<OrdersHistoryAdapter.OrdersVie
                 val status = OrderController.getOrderStatus(order.orderStatus)
                 val colorDrawable = when (status) {
                     OrderStatus.Canceled -> ColorDrawable(resources.getColor(R.color.canceled))
-                    OrderStatus.Confirmed ->  ColorDrawable(resources.getColor(R.color.confirmed))
+                    OrderStatus.Confirmed -> ColorDrawable(resources.getColor(R.color.confirmed))
                     OrderStatus.Delivered -> ColorDrawable(resources.getColor(R.color.delivered))
                     OrderStatus.Returned -> ColorDrawable(resources.getColor(R.color.returned))
                     OrderStatus.Shipped -> ColorDrawable(resources.getColor(R.color.shipped))
@@ -61,6 +61,9 @@ class OrdersHistoryAdapter : RecyclerView.Adapter<OrdersHistoryAdapter.OrdersVie
     override fun onBindViewHolder(holder: OrdersHistoryAdapter.OrdersViewHolder, position: Int) {
         val order = differ.currentList[position]
         holder.bind(order)
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(order)
+        }
     }
 
     override fun getItemCount(): Int = differ.currentList.size

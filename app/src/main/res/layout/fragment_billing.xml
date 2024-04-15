@@ -185,6 +185,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/billing_products_nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="7dp"
@@ -224,45 +225,46 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_empty_cart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/empty_cart"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:alpha="0.8"
-                    android:src="@drawable/empty_cart_3d"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-40dp"
-                    android:alpha="0.7"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Your cart is empty."
-                    android:textColor="@color/brown"
-                    android:textSize="15sp"
-                    app:layout_constraintEnd_toEndOf="@id/empty_cart"
-                    app:layout_constraintStart_toStartOf="@id/empty_cart"
-                    app:layout_constraintTop_toBottomOf="@id/empty_cart" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_empty_cart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/break_line2">
+
+        <ImageView
+            android:id="@+id/empty_cart"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:alpha="0.8"
+            android:src="@drawable/empty_cart_3d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:alpha="0.7"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAlignment="center"
+            android:text="You can't show the billing\nwithout checkout your cart!"
+            android:textColor="@color/brown"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/empty_cart"
+            app:layout_constraintStart_toStartOf="@id/empty_cart"
+            app:layout_constraintTop_toBottomOf="@id/empty_cart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress_bar"

@@ -150,6 +150,7 @@ class UserAccountFragment : Fragment() {
                 loginViewModel.resetPassword(it)
             }
         }
+        binding.exit.setOnClickListener { findNavController().navigateUp() }
     }
 
     @SuppressLint("SetTextI18n")

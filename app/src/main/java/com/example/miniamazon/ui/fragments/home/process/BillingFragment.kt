@@ -63,6 +63,9 @@ class BillingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclers()
+        if (!args.payment) {
+            cartEmptySetUp()
+        }
         lifecycleScope.launchWhenStarted {
             billingViewModel.addresses.collectLatest {
                 when (it) {
@@ -135,6 +138,10 @@ class BillingFragment : Fragment() {
         binding.exit.setOnClickListener { findNavController().navigateUp() }
         addressAdapter.onClick = {
             selectedAddress = it
+            if (!args.payment) {
+                val bundle = Bundle().apply { putParcelable("address", selectedAddress) }
+                findNavController().navigate(R.id.action_billingFragment_to_addressFragment, bundle)
+            }
         }
         binding.placeOrderBtn.setOnClickListener {
             if (selectedAddress == null) {
@@ -180,6 +187,13 @@ class BillingFragment : Fragment() {
                 adapter = cartBillingAdapter
                 addItemDecoration(VerticalItemDecoration())
             }
+        }
+    }
+    private fun cartEmptySetUp() {
+        binding.apply {
+            clEmptyCart.show()
+            billingProductsNestedScroll.gone()
+            linearLayout2.gone()
         }
     }
 }

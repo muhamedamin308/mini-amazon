@@ -105,7 +105,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             viewModel.changeQuantity(it, QuantityChangeHelper.DECREASE)
         }
         binding.checkoutButton.setOnClickListener {
-            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice, cartAdapter.differ.currentList.toTypedArray())
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice, cartAdapter.differ.currentList.toTypedArray(), true)
             findNavController().navigate(action)
         }
     }
