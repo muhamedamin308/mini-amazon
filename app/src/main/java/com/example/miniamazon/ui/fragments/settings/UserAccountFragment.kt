@@ -42,16 +42,12 @@ class UserAccountFragment : Fragment() {
         imageActivityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 userProfileImageUri = it?.data?.data
-                Glide.with(this)
-                    .load(userProfileImageUri)
-                    .into(binding.userImageProfile)
+                Glide.with(this).load(userProfileImageUri).into(binding.userImageProfile)
             }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentUserAccountBinding.inflate(inflater)
         return binding.root
@@ -65,9 +61,7 @@ class UserAccountFragment : Fragment() {
                     is Status.Error -> {
                         showUserAfterLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -87,9 +81,7 @@ class UserAccountFragment : Fragment() {
                     is Status.Error -> {
                         binding.continueButton.revertAnimation()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -118,9 +110,7 @@ class UserAccountFragment : Fragment() {
 
                     is Status.Error -> {
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -156,9 +146,7 @@ class UserAccountFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun showUserInformation(user: User) {
         binding.apply {
-            Glide.with(requireContext())
-                .load(user.profile)
-                .error(ColorDrawable(Color.BLACK))
+            Glide.with(requireContext()).load(user.profile).error(ColorDrawable(Color.BLACK))
                 .into(userImageProfile)
             fullName.setText("${user.firstName} ${user.lastName}")
             emailEt.setText(user.email)

@@ -3,8 +3,7 @@ package com.example.miniamazon.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Address
-import com.example.miniamazon.util.Constants.ADDRESS_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddressViewModel @Inject constructor(
-    private val fireStore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val fireStore: FirebaseFirestore, private val auth: FirebaseAuth
 ) : ViewModel() {
     private val mAddress = MutableStateFlow<Status<Address>>(Status.UnSpecified())
     val address = mAddress.asStateFlow()
@@ -29,11 +27,8 @@ class AddressViewModel @Inject constructor(
         val validInputs = validateInputs(address)
         if (validInputs) {
             viewModelScope.launch { mAddress.emit(Status.Loading()) }
-            fireStore.collection(USER_COLLECTION)
-                .document(auth.uid!!)
-                .collection(ADDRESS_COLLECTION)
-                .document()
-                .set(address)
+            fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+                .collection(Constants.Collections.ADDRESS_COLLECTION).document().set(address)
                 .addOnSuccessListener {
                     viewModelScope.launch { mAddress.emit(Status.Success(address)) }
                 }.addOnFailureListener {
@@ -47,10 +42,7 @@ class AddressViewModel @Inject constructor(
     }
 
     private fun validateInputs(address: Address): Boolean =
-        address.homeTitle.trim().isNotEmpty() &&
-                address.fullName.trim().isNotEmpty() &&
-                address.street.trim().isNotEmpty() &&
-                address.phone.trim().isNotEmpty() &&
-                address.city.trim().isNotEmpty() &&
-                address.state.trim().isNotEmpty()
+        address.homeTitle.trim().isNotEmpty() && address.fullName.trim()
+            .isNotEmpty() && address.street.trim().isNotEmpty() && address.phone.trim()
+            .isNotEmpty() && address.city.trim().isNotEmpty() && address.state.trim().isNotEmpty()
 }

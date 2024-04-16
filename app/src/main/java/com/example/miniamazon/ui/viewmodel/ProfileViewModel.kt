@@ -3,7 +3,7 @@ package com.example.miniamazon.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.User
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val fireStore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val fireStore: FirebaseFirestore, private val auth: FirebaseAuth
 ) : ViewModel() {
     private val mUser = MutableStateFlow<Status<User>>(Status.UnSpecified())
     val user = mUser.asStateFlow()
@@ -27,8 +26,7 @@ class ProfileViewModel @Inject constructor(
 
     private fun getUserProfile() {
         viewModelScope.launch { mUser.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
             .addSnapshotListener { value, error ->
                 if (error == null) {
                     val user = value?.toObject(User::class.java)
@@ -40,6 +38,7 @@ class ProfileViewModel @Inject constructor(
                 }
             }
     }
+
     fun logOutUser() {
         auth.signOut()
     }

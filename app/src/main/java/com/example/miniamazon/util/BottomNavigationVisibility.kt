@@ -1,6 +1,5 @@
 package com.example.miniamazon.util
 
-import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.miniamazon.R
 import com.example.miniamazon.ui.activites.home.ShoppingActivity

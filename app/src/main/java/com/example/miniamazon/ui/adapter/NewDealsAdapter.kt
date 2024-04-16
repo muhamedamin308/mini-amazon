@@ -13,17 +13,14 @@ import com.example.miniamazon.data.helper.getProductPrice
 import com.example.miniamazon.databinding.NewDealsItemsBinding
 import com.example.miniamazon.util.gone
 
-class NewDealsAdapter :
-    RecyclerView.Adapter<NewDealsAdapter.NewDealsViewHolder>() {
+class NewDealsAdapter : RecyclerView.Adapter<NewDealsAdapter.NewDealsViewHolder>() {
 
     inner class NewDealsViewHolder(private val binding: NewDealsItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView)
-                    .load(product.images[0])
-                    .into(imageNewDeals)
+                Glide.with(itemView).load(product.images[0]).into(imageNewDeals)
                 tvDealProductName.text = product.name
                 val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
                 if (priceAfterOffer == null) {
@@ -51,16 +48,12 @@ class NewDealsAdapter :
 
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): NewDealsViewHolder =
-        NewDealsViewHolder(
-            NewDealsItemsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        parent: ViewGroup, viewType: Int
+    ): NewDealsViewHolder = NewDealsViewHolder(
+        NewDealsItemsBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
+    )
 
 
     override fun getItemCount(): Int = differ.currentList.size

@@ -2,7 +2,7 @@ package com.example.miniamazon.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.miniamazon.data.classes.User
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.RegisterFieldState
 import com.example.miniamazon.util.RegisterValidation
 import com.example.miniamazon.util.Status
@@ -20,11 +20,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val authenticationFirebase: FirebaseAuth,
-    private val fireStore: FirebaseFirestore
+    private val authenticationFirebase: FirebaseAuth, private val fireStore: FirebaseFirestore
 ) : ViewModel() {
-    private val mRegister =
-        MutableStateFlow<Status<User>>(Status.UnSpecified())
+    private val mRegister = MutableStateFlow<Status<User>>(Status.UnSpecified())
     val register: Flow<Status<User>> = mRegister
     private val mValidation = Channel<RegisterFieldState>()
     val validation = mValidation.receiveAsFlow()
@@ -37,23 +35,19 @@ class RegisterViewModel @Inject constructor(
                     it.user?.let { firebaseUser ->
                         saveUserDetails(firebaseUser.uid, newUser)
                     }
-                }
-                .addOnFailureListener {
+                }.addOnFailureListener {
                     mRegister.value = Status.Error(it.message.toString())
                 }
         } else {
             val registerFailedState = RegisterFieldState(
-                validateEmail(newUser.email),
-                validatePassword(password)
+                validateEmail(newUser.email), validatePassword(password)
             )
             runBlocking { mValidation.send(registerFailedState) }
         }
     }
 
     private fun saveUserDetails(userId: String, user: User) {
-        fireStore.collection(USER_COLLECTION)
-            .document(userId)
-            .set(user)
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(userId).set(user)
             .addOnSuccessListener {
                 mRegister.value = Status.Success(user)
             }.addOnFailureListener {
@@ -64,7 +58,6 @@ class RegisterViewModel @Inject constructor(
     private fun validateUser(user: User, password: String): Boolean {
         val emailValidation = validateEmail(user.email)
         val passwordValidate = validatePassword(password)
-        return emailValidation is RegisterValidation.Success &&
-                passwordValidate is RegisterValidation.Success
+        return emailValidation is RegisterValidation.Success && passwordValidate is RegisterValidation.Success
     }
 }

@@ -22,12 +22,9 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
     protected val productsWithOfferAdapter: OfferProductsAdapter by lazy { OfferProductsAdapter() }
     protected val productsAdapter: NewDealsAdapter by lazy { NewDealsAdapter() }
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBaseBinding
-            .inflate(inflater)
+        binding = FragmentBaseBinding.inflate(inflater)
         return binding.root
     }
 
@@ -37,18 +34,14 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base) {
 
         productsAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
-            findNavController()
-                .navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment,
-                    bundle
+            findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment, bundle
                 )
         }
         productsWithOfferAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
-            findNavController()
-                .navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment,
-                    bundle
+            findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment, bundle
                 )
         }
 

@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
-class FashionCategoryFragment: BaseCategoryFragment() {
+class FashionCategoryFragment : BaseCategoryFragment() {
     @Inject
     lateinit var fireStore: FirebaseFirestore
 
@@ -32,9 +32,7 @@ class FashionCategoryFragment: BaseCategoryFragment() {
                     is Status.Error -> {
                         hideOfferLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -54,9 +52,7 @@ class FashionCategoryFragment: BaseCategoryFragment() {
                     is Status.Error -> {
                         hideProductsLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 

@@ -3,8 +3,7 @@ package com.example.miniamazon.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.order.Order
-import com.example.miniamazon.util.Constants.ORDER_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,11 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrdersHistoryViewModel @Inject constructor(
-    private val fireStore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val fireStore: FirebaseFirestore, private val auth: FirebaseAuth
 ) : ViewModel() {
-    private val mOrders =
-        MutableStateFlow<Status<List<Order>>>(Status.UnSpecified())
+    private val mOrders = MutableStateFlow<Status<List<Order>>>(Status.UnSpecified())
     val orders = mOrders.asStateFlow()
 
     init {
@@ -29,15 +26,11 @@ class OrdersHistoryViewModel @Inject constructor(
 
     private fun getAllOrders() {
         viewModelScope.launch { mOrders.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .collection(ORDER_COLLECTION)
-            .get()
-            .addOnSuccessListener {
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.ORDER_COLLECTION).get().addOnSuccessListener {
                 val allOrders = it.toObjects(Order::class.java)
                 viewModelScope.launch { mOrders.emit(Status.Success(allOrders)) }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 viewModelScope.launch { mOrders.emit(Status.Error(it.message.toString())) }
             }
     }

@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.miniamazon.R
 import com.example.miniamazon.databinding.FragmentAccountsBinding
-import com.example.miniamazon.databinding.FragmentIntroductionBinding
 
-class AccountsFragment: Fragment() {
+class AccountsFragment : Fragment() {
     private lateinit var binding: FragmentAccountsBinding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAccountsBinding.inflate(inflater)
         return binding.root

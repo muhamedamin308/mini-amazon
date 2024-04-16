@@ -47,16 +47,12 @@ class OrdersHistoryAdapter : RecyclerView.Adapter<OrdersHistoryAdapter.OrdersVie
     val differ = AsyncListDiffer(this, diffCallback)
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): OrdersHistoryAdapter.OrdersViewHolder =
-        OrdersViewHolder(
-            OrderItemViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        parent: ViewGroup, viewType: Int
+    ): OrdersHistoryAdapter.OrdersViewHolder = OrdersViewHolder(
+        OrderItemViewBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
+    )
 
     override fun onBindViewHolder(holder: OrdersHistoryAdapter.OrdersViewHolder, position: Int) {
         val order = differ.currentList[position]

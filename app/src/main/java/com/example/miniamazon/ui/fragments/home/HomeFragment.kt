@@ -15,6 +15,7 @@ import com.example.miniamazon.ui.fragments.home.category.GroceryCategoryFragment
 import com.example.miniamazon.ui.fragments.home.category.MainCategoryFragment
 import com.example.miniamazon.ui.fragments.home.category.PerfumesCategoryFragment
 import com.example.miniamazon.ui.fragments.home.category.VideoGamesCategoryFragment
+import com.example.miniamazon.util.Constants
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -51,13 +52,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.viewPagerHome.adapter = viewPagerAdapter
         TabLayoutMediator(binding.tableLayout, binding.viewPagerHome) { tab, position ->
             when (position) {
-                0 -> tab.text = "Main"
-                1 -> tab.text = "Electronics"
-                2 -> tab.text = "Appliances"
-                3 -> tab.text = "Fashion"
-                4 -> tab.text = "Grocery"
-                5 -> tab.text = "Video Game"
-                6 -> tab.text = "Perfumes"
+                0 -> tab.text = Constants.Taps.HOME
+                1 -> tab.text = Constants.Taps.ELECTRONICS
+                2 -> tab.text = Constants.Taps.APPLIANCES
+                3 -> tab.text = Constants.Taps.FASHION
+                4 -> tab.text = Constants.Taps.GROCERY
+                5 -> tab.text = Constants.Taps.VIDEO_GAMES
+                6 -> tab.text = Constants.Taps.PERFUMES
             }
         }.attach()
     }

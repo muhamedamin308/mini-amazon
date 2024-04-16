@@ -1,8 +1,7 @@
 package com.example.miniamazon.data.firebase
 
 import com.example.miniamazon.data.classes.Cart
-import com.example.miniamazon.util.Constants.CART_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -10,19 +9,14 @@ class FirebaseDataLayer(
     private val fireStore: FirebaseFirestore,
     private val auth: FirebaseAuth,
 ) {
-    private val cartCollection = fireStore
-        .collection(USER_COLLECTION)
-        .document(auth.uid!!)
-        .collection(CART_COLLECTION)
+    private val cartCollection =
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.CART_COLLECTION)
 
     fun addProductToCart(
-        cartProduct: Cart,
-        onAction: (Cart?, Exception?) -> Unit
+        cartProduct: Cart, onAction: (Cart?, Exception?) -> Unit
     ) {
-        cartCollection
-            .document()
-            .set(cartProduct)
-            .addOnSuccessListener {
+        cartCollection.document().set(cartProduct).addOnSuccessListener {
                 onAction(cartProduct, null)
             }.addOnFailureListener {
                 onAction(null, it)
@@ -30,8 +24,7 @@ class FirebaseDataLayer(
     }
 
     fun increaseExcitingProductQuantity(
-        documentPathID: String,
-        onAction: (String?, Exception?) -> Unit
+        documentPathID: String, onAction: (String?, Exception?) -> Unit
     ) {
         fireStore.runTransaction { transition ->
             val documentRef = cartCollection.document(documentPathID)
@@ -50,8 +43,7 @@ class FirebaseDataLayer(
     }
 
     fun decreaseExcitingProductQuantity(
-        documentPathID: String,
-        onAction: (String?, Exception?) -> Unit
+        documentPathID: String, onAction: (String?, Exception?) -> Unit
     ) {
         fireStore.runTransaction { transition ->
             val documentRef = cartCollection.document(documentPathID)

@@ -8,9 +8,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 @Suppress("UNCHECKED_CAST")
 class BaseCategoryViewModelFactory(
-    private val firebaseFireStore: FirebaseFirestore,
-    private val category: Category
-): ViewModelProvider.Factory {
+    private val firebaseFireStore: FirebaseFirestore, private val category: Category
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         CategoriesViewModel(firebaseFireStore, category) as T
 }

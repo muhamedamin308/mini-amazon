@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Address
 import com.example.miniamazon.data.classes.Cart
-import com.example.miniamazon.util.Constants.ADDRESS_COLLECTION
-import com.example.miniamazon.util.Constants.CART_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,13 +16,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BillingViewModel @Inject constructor(
-    private val fireStore: FirebaseFirestore,
-    private val auth: FirebaseAuth
+    private val fireStore: FirebaseFirestore, private val auth: FirebaseAuth
 ) : ViewModel() {
-    private val mBillingCart =
-        MutableStateFlow<Status<List<Cart>>>(Status.UnSpecified())
-    private val mAddresses =
-        MutableStateFlow<Status<List<Address>>>(Status.UnSpecified())
+    private val mBillingCart = MutableStateFlow<Status<List<Cart>>>(Status.UnSpecified())
+    private val mAddresses = MutableStateFlow<Status<List<Address>>>(Status.UnSpecified())
     val billingCart = mBillingCart.asStateFlow()
     val addresses = mAddresses.asStateFlow()
 
@@ -35,9 +30,8 @@ class BillingViewModel @Inject constructor(
 
     private fun fetchUserAddresses() {
         viewModelScope.launch { mAddresses.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .collection(ADDRESS_COLLECTION)
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.ADDRESS_COLLECTION)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     viewModelScope.launch { mAddresses.emit(Status.Error(error.message.toString())) }
@@ -50,12 +44,11 @@ class BillingViewModel @Inject constructor(
                 }
             }
     }
+
     private fun fetchUserCart() {
         viewModelScope.launch { mBillingCart.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .collection(CART_COLLECTION)
-            .addSnapshotListener { value, error ->
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.CART_COLLECTION).addSnapshotListener { value, error ->
                 if (error != null) {
                     viewModelScope.launch { mBillingCart.emit(Status.Error(error.message.toString())) }
                     return@addSnapshotListener

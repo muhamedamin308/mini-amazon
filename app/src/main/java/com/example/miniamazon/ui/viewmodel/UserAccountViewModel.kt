@@ -8,8 +8,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.AmazonApplication
 import com.example.miniamazon.data.classes.User
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Constants.PROFILE_STORAGE_PATH
-import com.example.miniamazon.util.Constants.USER_COLLECTION
 import com.example.miniamazon.util.RegisterValidation
 import com.example.miniamazon.util.Status
 import com.example.miniamazon.util.validateEmail
@@ -44,9 +44,7 @@ class UserAccountViewModel @Inject constructor(
 
     private fun fetchProfile() {
         viewModelScope.launch { mProfile.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .get()
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!).get()
             .addOnSuccessListener { documentSnapshot ->
                 val user = documentSnapshot.toObject(User::class.java)
                 user?.let {
@@ -54,8 +52,7 @@ class UserAccountViewModel @Inject constructor(
                         mProfile.emit(Status.Success(user))
                     }
                 }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 viewModelScope.launch {
                     mProfile.emit(Status.Error(it.message.toString()))
                 }
@@ -63,9 +60,9 @@ class UserAccountViewModel @Inject constructor(
     }
 
     fun updateUser(user: User, userImageUri: Uri?) {
-        val areInputsValid = validateEmail(user.email) is RegisterValidation.Success &&
-                user.firstName.trim().isNotEmpty() &&
-                user.lastName.trim().isNotEmpty()
+        val areInputsValid =
+            validateEmail(user.email) is RegisterValidation.Success && user.firstName.trim()
+                .isNotEmpty() && user.lastName.trim().isNotEmpty()
         if (!areInputsValid) {
             viewModelScope.launch { mProfileEdit.emit(Status.Error("Check your input!")) }
             return
@@ -81,14 +78,9 @@ class UserAccountViewModel @Inject constructor(
     private fun saveUserInfoWithNewImage(user: User, profileUri: Uri) {
         viewModelScope.launch {
             try {
-                val imageBitMap = MediaStore
-                    .Images
-                    .Media
-                    .getBitmap(
-                        getApplication<AmazonApplication>()
-                            .contentResolver,
-                        profileUri
-                    )
+                val imageBitMap = MediaStore.Images.Media.getBitmap(
+                    getApplication<AmazonApplication>().contentResolver, profileUri
+                )
                 val byteArray = ByteArrayOutputStream()
                 imageBitMap.compress(Bitmap.CompressFormat.JPEG, 93, byteArray)
                 val imageByteArray = byteArray.toByteArray()
@@ -107,7 +99,8 @@ class UserAccountViewModel @Inject constructor(
 
     private fun saveUserInfo(user: User, isRetrieveOldImage: Boolean) {
         fireStore.runTransaction { transaction ->
-            val documentRef = fireStore.collection(USER_COLLECTION).document(auth.uid!!)
+            val documentRef =
+                fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
             if (isRetrieveOldImage) {
                 val currentUser = transaction.get(documentRef).toObject(User::class.java)
                 val newUser = user.copy(profile = currentUser?.profile ?: "")

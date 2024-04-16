@@ -6,8 +6,7 @@ import com.example.miniamazon.data.classes.Cart
 import com.example.miniamazon.data.firebase.FirebaseDataLayer
 import com.example.miniamazon.data.helper.QuantityChangeHelper
 import com.example.miniamazon.data.helper.getProductPrice
-import com.example.miniamazon.util.Constants.CART_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -50,10 +49,8 @@ class CartViewModel @Inject constructor(
 
     private fun getCartProduct() {
         viewModelScope.launch { mCart.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .collection(CART_COLLECTION)
-            .addSnapshotListener { value, error ->
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.CART_COLLECTION).addSnapshotListener { value, error ->
                 if (error != null || value == null) {
                     viewModelScope.launch {
                         mCart.emit(Status.Error(error?.message.toString()))
@@ -69,8 +66,7 @@ class CartViewModel @Inject constructor(
     }
 
     fun changeQuantity(
-        cartProduct: Cart,
-        quantityChangeHelper: QuantityChangeHelper
+        cartProduct: Cart, quantityChangeHelper: QuantityChangeHelper
     ) {
         val index = cart.value.data?.indexOf(cartProduct)
         /**
@@ -101,11 +97,8 @@ class CartViewModel @Inject constructor(
         val index = cart.value.data?.indexOf(product)
         if (index != null && index != -1) {
             val documentId = cartDocument[index].id
-            fireStore.collection(USER_COLLECTION)
-                .document(auth.uid!!)
-                .collection(CART_COLLECTION)
-                .document(documentId)
-                .delete()
+            fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+                .collection(Constants.Collections.CART_COLLECTION).document(documentId).delete()
         }
     }
 

@@ -22,9 +22,7 @@ class RecommendedProductsAdapter :
         fun bind(product: Product) {
             binding.apply {
                 tvName.text = product.name
-                Glide.with(itemView)
-                    .load(product.images[0])
-                    .into(imageProduct)
+                Glide.with(itemView).load(product.images[0]).into(imageProduct)
                 val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
                 if (priceAfterOffer == null) {
                     tvNewPrice.gone()
@@ -51,14 +49,12 @@ class RecommendedProductsAdapter :
 
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): RecommendedProductsViewHolder =
-        RecommendedProductsViewHolder(
-            RecommendedItemsBinding.inflate(
-                LayoutInflater.from(parent.context)
-            )
+        parent: ViewGroup, viewType: Int
+    ): RecommendedProductsViewHolder = RecommendedProductsViewHolder(
+        RecommendedItemsBinding.inflate(
+            LayoutInflater.from(parent.context)
         )
+    )
 
 
     override fun getItemCount(): Int = differ.currentList.size

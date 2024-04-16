@@ -32,9 +32,7 @@ class PerfumesCategoryFragment : BaseCategoryFragment() {
                     is Status.Error -> {
                         hideOfferLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -54,9 +52,7 @@ class PerfumesCategoryFragment : BaseCategoryFragment() {
                     is Status.Error -> {
                         hideProductsLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 

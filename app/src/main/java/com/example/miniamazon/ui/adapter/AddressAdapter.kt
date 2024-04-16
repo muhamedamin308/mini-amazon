@@ -2,7 +2,6 @@ package com.example.miniamazon.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -29,16 +28,14 @@ class AddressAdapter(
                     imageAddressBg.show()
                     addressTv.setTextColor(
                         ContextCompat.getColor(
-                            context,
-                            R.color.main_background
+                            context, R.color.main_background
                         )
                     )
                 } else {
                     imageAddressBg.hide()
                     addressTv.setTextColor(
                         ContextCompat.getColor(
-                            context,
-                            R.color.cancel
+                            context, R.color.cancel
                         )
                     )
                 }
@@ -60,12 +57,11 @@ class AddressAdapter(
             notifyItemChanged(selectedAddress)
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressViewHolder =
         AddressViewHolder(
             ItemAddressLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 
@@ -75,8 +71,7 @@ class AddressAdapter(
         val address = differ.currentList[position]
         holder.bind(address, selectedAddress == position)
         holder.binding.addressTv.setOnClickListener {
-            if (selectedAddress >= 0)
-                notifyItemChanged(selectedAddress)
+            if (selectedAddress >= 0) notifyItemChanged(selectedAddress)
             selectedAddress = holder.adapterPosition
             notifyItemChanged(selectedAddress)
             onClick?.invoke(address)

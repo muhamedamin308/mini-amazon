@@ -26,9 +26,7 @@ class RegisterFragment : Fragment() {
     private val viewModel by viewModels<RegisterViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentRegisterBinding.inflate(inflater)
         return binding.root
@@ -65,9 +63,7 @@ class RegisterFragment : Fragment() {
                     is Status.Error -> {
                         binding.continueButton.revertAnimation()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -77,7 +73,7 @@ class RegisterFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.validation.collect {validation ->
+            viewModel.validation.collect { validation ->
                 if (validation.email is RegisterValidation.Failed) {
                     withContext(Dispatchers.Main) {
                         binding.emailEt.apply {

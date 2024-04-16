@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
+
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
 class ElectronicsCategoryFragment : BaseCategoryFragment() {
@@ -32,9 +33,7 @@ class ElectronicsCategoryFragment : BaseCategoryFragment() {
                     is Status.Error -> {
                         hideOfferLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -54,9 +53,7 @@ class ElectronicsCategoryFragment : BaseCategoryFragment() {
                     is Status.Error -> {
                         hideProductsLoading()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 

@@ -27,9 +27,7 @@ class SpecialProductsAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView)
-                    .load(product.images[0])
-                    .into(imageSpecialProduct)
+                Glide.with(itemView).load(product.images[0]).into(imageSpecialProduct)
                 tvSpecialProductName.text = product.name
                 tvSpecialProductPrice.text = "$ ${product.price}"
                 // TODO: Add the product to cart when click on the button
@@ -40,9 +38,7 @@ class SpecialProductsAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecialProductViewHolder =
         SpecialProductViewHolder(
             SpecialRvItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 

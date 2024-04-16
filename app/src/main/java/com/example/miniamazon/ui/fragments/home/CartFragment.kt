@@ -1,7 +1,6 @@
 package com.example.miniamazon.ui.fragments.home
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +30,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private val viewModel by activityViewModels<CartViewModel>()
     private var totalPrice = 0f
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater)
         return binding.root
@@ -57,9 +54,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                     is Status.Error -> {
                         binding.progressBar.gone()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -69,8 +64,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
                     is Status.Success -> {
                         binding.progressBar.hide()
-                        if (it.data!!.isEmpty())
-                            cartEmptySetUp()
+                        if (it.data!!.isEmpty()) cartEmptySetUp()
                         else {
                             setUpCart()
                             cartAdapter.differ.submitList(it.data)
@@ -83,15 +77,13 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.deleteDialog.collectLatest {
-                requireContext().showAlertDialog(
-                    title = "Delete item from cart",
+                requireContext().showAlertDialog(title = "Delete item from cart",
                     message = "Do you want to delete this item from cart?",
                     positiveButtonTitle = "Delete",
                     negativeButtonTitle = "Cancel",
                     positiveAction = {
                         viewModel.deleteProduct(it)
-                    }
-                )
+                    })
             }
         }
         cartAdapter.onProductClicked = {
@@ -105,7 +97,11 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             viewModel.changeQuantity(it, QuantityChangeHelper.DECREASE)
         }
         binding.checkoutButton.setOnClickListener {
-            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice, cartAdapter.differ.currentList.toTypedArray(), true)
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(
+                totalPrice,
+                cartAdapter.differ.currentList.toTypedArray(),
+                true
+            )
             findNavController().navigate(action)
         }
     }

@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Cart
 import com.example.miniamazon.data.firebase.FirebaseDataLayer
-import com.example.miniamazon.util.Constants.CART_COLLECTION
-import com.example.miniamazon.util.Constants.USER_COLLECTION
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,12 +25,9 @@ class ProductDetailsViewModel @Inject constructor(
 
     fun addProductToCart(cart: Cart) {
         viewModelScope.launch { mAddToCart.emit(Status.Loading()) }
-        fireStore.collection(USER_COLLECTION)
-            .document(auth.uid!!)
-            .collection(CART_COLLECTION)
-            .whereEqualTo("products.id", cart.products.id)
-            .get()
-            .addOnSuccessListener {
+        fireStore.collection(Constants.Collections.USER_COLLECTION).document(auth.uid!!)
+            .collection(Constants.Collections.CART_COLLECTION)
+            .whereEqualTo("products.id", cart.products.id).get().addOnSuccessListener {
                 it.documents.let { snapshots ->
                     if (snapshots.isEmpty()) {
                         addNewProduct(cart)
@@ -45,8 +41,7 @@ class ProductDetailsViewModel @Inject constructor(
                         }
                     }
                 }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 viewModelScope.launch { mAddToCart.emit(Status.Error(it.message.toString())) }
             }
     }

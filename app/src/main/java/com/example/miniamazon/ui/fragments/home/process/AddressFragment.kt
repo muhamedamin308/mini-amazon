@@ -20,6 +20,7 @@ import com.example.miniamazon.util.show
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+
 @AndroidEntryPoint
 class AddressFragment : Fragment(R.layout.fragment_address) {
     private lateinit var binding: FragmentAddressBinding
@@ -33,9 +34,7 @@ class AddressFragment : Fragment(R.layout.fragment_address) {
                     is Status.Error -> {
                         binding.progressBar.hide()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -55,18 +54,14 @@ class AddressFragment : Fragment(R.layout.fragment_address) {
         lifecycleScope.launchWhenStarted {
             viewModel.inValidAddress.collectLatest {
                 Snackbar.make(
-                    requireView(),
-                    "Error: $it",
-                    Snackbar.LENGTH_LONG
+                    requireView(), "Error: $it", Snackbar.LENGTH_LONG
                 ).show()
             }
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddressBinding.inflate(inflater)
         return binding.root

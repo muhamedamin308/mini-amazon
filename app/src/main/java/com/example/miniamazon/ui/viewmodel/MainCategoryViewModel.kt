@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.miniamazon.data.classes.Product
 import com.example.miniamazon.data.helper.PagingInfoHelper
+import com.example.miniamazon.util.Constants
 import com.example.miniamazon.util.Constants.Categories.NEW_DEALS
 import com.example.miniamazon.util.Constants.Categories.SPECIAL_PRODUCTS
-import com.example.miniamazon.util.Constants.PRODUCTS_COLLECTION
 import com.example.miniamazon.util.Status
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,16 +19,13 @@ import javax.inject.Inject
 class MainCategoryViewModel @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) : ViewModel() {
-    private val mSpecialProduct =
-        MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
+    private val mSpecialProduct = MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
     val specialProduct = mSpecialProduct.asStateFlow()
 
-    private val mRecommendedProduct =
-        MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
+    private val mRecommendedProduct = MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
     val recommendedProduct = mRecommendedProduct.asStateFlow()
 
-    private val mNewDeals =
-        MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
+    private val mNewDeals = MutableStateFlow<Status<List<Product>>>(Status.UnSpecified())
     val newDeals = mNewDeals.asStateFlow()
 
     private val paging = PagingInfoHelper()
@@ -43,16 +40,13 @@ class MainCategoryViewModel @Inject constructor(
         viewModelScope.launch {
             mSpecialProduct.emit(Status.Loading())
         }
-        fireStore.collection(PRODUCTS_COLLECTION)
-            .whereEqualTo("category", SPECIAL_PRODUCTS)
-            .get()
-            .addOnSuccessListener {
+        fireStore.collection(Constants.Collections.PRODUCTS_COLLECTION)
+            .whereEqualTo("category", SPECIAL_PRODUCTS).get().addOnSuccessListener {
                 val specialProducts = it.toObjects(Product::class.java)
                 viewModelScope.launch {
                     mSpecialProduct.emit(Status.Success(specialProducts))
                 }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 viewModelScope.launch {
                     mSpecialProduct.emit(Status.Error(it.message.toString()))
                 }
@@ -64,10 +58,8 @@ class MainCategoryViewModel @Inject constructor(
             viewModelScope.launch {
                 mRecommendedProduct.emit(Status.Loading())
             }
-            fireStore.collection(PRODUCTS_COLLECTION)
-                .limit(paging.viewPosition * 10)
-                .get()
-                .addOnSuccessListener {
+            fireStore.collection(Constants.Collections.PRODUCTS_COLLECTION)
+                .limit(paging.viewPosition * 10).get().addOnSuccessListener {
                     val recommendedProducts = it.toObjects(Product::class.java)
                     paging.isPagingEnd = recommendedProducts == paging.oldProducts
                     paging.oldProducts = recommendedProducts
@@ -75,8 +67,7 @@ class MainCategoryViewModel @Inject constructor(
                         mRecommendedProduct.emit(Status.Success(recommendedProducts))
                     }
                     paging.viewPosition++
-                }
-                .addOnFailureListener {
+                }.addOnFailureListener {
                     viewModelScope.launch {
                         mRecommendedProduct.emit(Status.Error(it.message.toString()))
                     }
@@ -88,16 +79,13 @@ class MainCategoryViewModel @Inject constructor(
         viewModelScope.launch {
             mNewDeals.emit(Status.Loading())
         }
-        fireStore.collection(PRODUCTS_COLLECTION)
-            .whereEqualTo("category", NEW_DEALS)
-            .get()
-            .addOnSuccessListener {
+        fireStore.collection(Constants.Collections.PRODUCTS_COLLECTION)
+            .whereEqualTo("category", NEW_DEALS).get().addOnSuccessListener {
                 val newDeals = it.toObjects(Product::class.java)
                 viewModelScope.launch {
                     mNewDeals.emit(Status.Success(newDeals))
                 }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 viewModelScope.launch {
                     mNewDeals.emit(Status.Error(it.message.toString()))
                 }

@@ -21,8 +21,7 @@ class IntroductionFragment : Fragment() {
     private lateinit var binding: FragmentIntroductionBinding
     private val viewModel by viewModels<IntroductionViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentIntroductionBinding.inflate(inflater)
         return binding.root

@@ -3,7 +3,6 @@ package com.example.miniamazon.ui.adapter
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -21,9 +20,7 @@ class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProd
         @SuppressLint("SetTextI18n")
         fun bind(product: Product) {
             binding.apply {
-                Glide.with(itemView)
-                    .load(product.images[0])
-                    .into(imageSpecialProduct)
+                Glide.with(itemView).load(product.images[0]).into(imageSpecialProduct)
                 tvSpecialProductName.text = product.name
                 val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
                 if (priceAfterOffer == null) {
@@ -51,9 +48,7 @@ class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProd
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferProductViewHolder =
         OfferProductViewHolder(
             ItemSpecialOffersLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 
@@ -67,5 +62,5 @@ class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.OfferProd
         }
     }
 
-    var onClick:((Product) -> Unit)? = null
+    var onClick: ((Product) -> Unit)? = null
 }

@@ -27,9 +27,7 @@ class OrdersHistoryFragment : Fragment() {
     private val viewModel by viewModels<OrdersHistoryViewModel>()
     private val ordersAdapter by lazy { OrdersHistoryAdapter() }
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentOrderBinding.inflate(inflater)
         return binding.root
@@ -44,9 +42,7 @@ class OrdersHistoryFragment : Fragment() {
                     is Status.Error -> {
                         binding.ordersProgressBar.gone()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -67,7 +63,8 @@ class OrdersHistoryFragment : Fragment() {
             }
         }
         ordersAdapter.onClick = {
-            val action = OrdersHistoryFragmentDirections.actionOrderFragmentToOrderDetailsFragment(it)
+            val action =
+                OrdersHistoryFragmentDirections.actionOrderFragmentToOrderDetailsFragment(it)
             findNavController().navigate(action)
         }
         binding.exit.setOnClickListener { findNavController().navigateUp() }

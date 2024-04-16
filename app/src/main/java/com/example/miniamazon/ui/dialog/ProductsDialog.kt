@@ -2,7 +2,6 @@ package com.example.miniamazon.ui.dialog
 
 import android.app.AlertDialog
 import android.content.Context
-import com.example.miniamazon.R
 
 fun Context.showAlertDialog(
     title: String,
@@ -19,7 +18,5 @@ fun Context.showAlertDialog(
             dialog.dismiss()
         }.setNegativeButton(negativeButtonTitle) { dialog, _ ->
             dialog.dismiss()
-        }
-        .create()
-        .show()
+        }.create().show()
 }

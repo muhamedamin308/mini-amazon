@@ -21,9 +21,7 @@ class MyCartAdapter : RecyclerView.Adapter<MyCartAdapter.MyCartViewHolder>() {
         @SuppressLint("SetTextI18n")
         fun bind(cart: Cart) {
             binding.apply {
-                Glide.with(itemView)
-                    .load(cart.products.images[0])
-                    .into(imageProductCart)
+                Glide.with(itemView).load(cart.products.images[0]).into(imageProductCart)
                 cartProductNameTv.text = cart.products.name
                 val priceAfterOffer =
                     cart.products.offerPercentage.getProductPrice(cart.products.price)
@@ -35,8 +33,7 @@ class MyCartAdapter : RecyclerView.Adapter<MyCartAdapter.MyCartViewHolder>() {
                         cart.selectedColor ?: Color.TRANSPARENT
                     )
                 )
-                productSizeTv.text =
-                    cart.selectedSize ?: "".also { cardView.gone() }
+                productSizeTv.text = cart.selectedSize ?: "".also { cardView.gone() }
             }
         }
     }
@@ -45,17 +42,14 @@ class MyCartAdapter : RecyclerView.Adapter<MyCartAdapter.MyCartViewHolder>() {
         override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean =
             oldItem.products.id == newItem.products.id
 
-        override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean =
-            oldItem == newItem
+        override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean = oldItem == newItem
     }
 
     val differ = AsyncListDiffer(this, diffCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCartViewHolder =
         MyCartViewHolder(
             ItemCartLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 

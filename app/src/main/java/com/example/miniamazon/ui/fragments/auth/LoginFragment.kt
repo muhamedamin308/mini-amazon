@@ -24,8 +24,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
@@ -65,9 +64,7 @@ class LoginFragment : Fragment() {
 
                     is Status.Error -> {
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
 
@@ -92,9 +89,7 @@ class LoginFragment : Fragment() {
                     is Status.Error -> {
                         binding.continueButton.revertAnimation()
                         Toast.makeText(
-                            requireContext(),
-                            it.message.toString(),
-                            Toast.LENGTH_LONG
+                            requireContext(), it.message.toString(), Toast.LENGTH_LONG
                         ).show()
                     }
 

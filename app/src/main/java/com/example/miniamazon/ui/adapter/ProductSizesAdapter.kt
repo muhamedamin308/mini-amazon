@@ -2,7 +2,6 @@ package com.example.miniamazon.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -28,8 +27,7 @@ class ProductSizesAdapter(
                     imageProductSizes.show()
                     productSizeTv.setTextColor(
                         ContextCompat.getColor(
-                            context,
-                            R.color.main_background
+                            context, R.color.main_background
                         )
                     )
                 }
@@ -38,8 +36,7 @@ class ProductSizesAdapter(
                     imageProductSizes.hide()
                     productSizeTv.setTextColor(
                         ContextCompat.getColor(
-                            context,
-                            R.color.cancel
+                            context, R.color.cancel
                         )
                     )
                 }
@@ -48,8 +45,7 @@ class ProductSizesAdapter(
     }
 
     private val diffCallback = object : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
-            oldItem == newItem
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
             oldItem == newItem
     }
@@ -58,22 +54,21 @@ class ProductSizesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SizesViewHolder =
         SizesViewHolder(
             SizesItemViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
+
     override fun getItemCount(): Int = differ.currentList.size
     override fun onBindViewHolder(holder: SizesViewHolder, position: Int) {
         val size = differ.currentList[position]
         holder.bind(position, size)
         holder.itemView.setOnClickListener {
-            if (selectedSize >= 0)
-                notifyItemChanged(selectedSize)
+            if (selectedSize >= 0) notifyItemChanged(selectedSize)
             selectedSize = holder.adapterPosition
             notifyItemChanged(selectedSize)
             onItemClicked?.invoke(size)
         }
     }
+
     var onItemClicked: ((String) -> Unit)? = null
 }

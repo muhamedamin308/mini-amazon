@@ -37,9 +37,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     private lateinit var newDealsAdapter: NewDealsAdapter
     private val viewModel by viewModels<MainCategoryViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainCategoryBinding.inflate(inflater)
         return binding.root
@@ -53,26 +51,20 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
 
         specialProductAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
-            findNavController()
-                .navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment,
-                    bundle
+            findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment, bundle
                 )
         }
         recommendedProductsAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
-            findNavController()
-                .navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment,
-                    bundle
+            findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment, bundle
                 )
         }
         newDealsAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
-            findNavController()
-                .navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment,
-                    bundle
+            findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailsFragment, bundle
                 )
         }
 
@@ -82,11 +74,8 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (status) {
                         is Status.Error -> {
                             showLoadingDialog()
-                            Log.e(TAG, status.message.toString())
                             Toast.makeText(
-                                requireContext(),
-                                status.message.toString(),
-                                Toast.LENGTH_SHORT
+                                requireContext(), status.message.toString(), Toast.LENGTH_SHORT
                             ).show()
                         }
 
@@ -110,11 +99,8 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (status) {
                         is Status.Error -> {
                             binding.recommendedProductsProgressBar.gone()
-                            Log.e(TAG, status.message.toString())
                             Toast.makeText(
-                                requireContext(),
-                                status.message.toString(),
-                                Toast.LENGTH_SHORT
+                                requireContext(), status.message.toString(), Toast.LENGTH_SHORT
                             ).show()
                         }
 
@@ -138,11 +124,8 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     when (status) {
                         is Status.Error -> {
                             showLoadingDialog()
-                            Log.e(TAG, status.message.toString())
                             Toast.makeText(
-                                requireContext(),
-                                status.message.toString(),
-                                Toast.LENGTH_SHORT
+                                requireContext(), status.message.toString(), Toast.LENGTH_SHORT
                             ).show()
                         }
 
@@ -192,9 +175,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             layoutManager = GridLayoutManager(requireContext(), 2)
             addItemDecoration(
                 GridSpaceItemDecoration(
-                    2,
-                    spaceInPixel,
-                    true
+                    2, spaceInPixel, true
                 )
             )
             adapter = recommendedProductsAdapter
@@ -210,6 +191,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             adapter = newDealsAdapter
         }
     }
+
     override fun onResume() {
         super.onResume()
         visibleNavigation()

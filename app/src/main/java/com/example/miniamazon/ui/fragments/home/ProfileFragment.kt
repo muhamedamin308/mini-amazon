@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.miniamazon.R
-import com.example.miniamazon.data.classes.User
 import com.example.miniamazon.databinding.FragmentProfileBinding
 import com.example.miniamazon.ui.activites.auth.AuthenticationActivity
 import com.example.miniamazon.ui.viewmodel.ProfileViewModel
@@ -26,13 +25,13 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import firebase.com.protolitewrapper.BuildConfig
 import kotlinx.coroutines.flow.collectLatest
+
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<ProfileViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater)
         return binding.root
@@ -48,7 +47,11 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_orderFragment)
         }
         binding.billingCartView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToBillingFragment(0f, emptyArray(), false)
+            val action = ProfileFragmentDirections.actionProfileFragmentToBillingFragment(
+                0f,
+                emptyArray(),
+                false
+            )
             findNavController().navigate(action)
         }
         binding.logOutUser.setOnClickListener {
@@ -60,25 +63,23 @@ class ProfileFragment : Fragment() {
         binding.tvAppVersion.text = "Version ${BuildConfig.VERSION_CODE}"
         lifecycleScope.launchWhenStarted {
             viewModel.user.collectLatest {
-                when(it) {
+                when (it) {
                     is Status.Error -> {
                         binding.profileProgressBar.gone()
                         Snackbar.make(
-                            requireView(),
-                            "Error: ${it.message.toString()}",
-                            Snackbar.LENGTH_LONG
+                            requireView(), "Error: ${it.message.toString()}", Snackbar.LENGTH_LONG
                         ).show()
                     }
+
                     is Status.Loading -> binding.profileProgressBar.show()
                     is Status.Success -> {
                         binding.profileProgressBar.gone()
-                        Glide.with(requireView())
-                            .load(it.data!!.profile)
-                            .error(ColorDrawable(Color.BLACK))
-                            .into(binding.userProfilePicture)
+                        Glide.with(requireView()).load(it.data!!.profile)
+                            .error(ColorDrawable(Color.BLACK)).into(binding.userProfilePicture)
                         binding.userFullName.text = "${it.data.firstName} ${it.data.lastName}"
                         binding.userEmail.text = it.data.email
                     }
+
                     is Status.UnSpecified -> Unit
                 }
             }

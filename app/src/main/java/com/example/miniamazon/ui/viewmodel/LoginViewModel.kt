@@ -23,37 +23,31 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             mLogin.emit(Status.Loading())
         }
-        authenticationFirebase
-            .signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                viewModelScope.launch {
-                    it?.user?.let {
-                        mLogin.emit(Status.Success(it))
-                    }
+        authenticationFirebase.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+            viewModelScope.launch {
+                it?.user?.let {
+                    mLogin.emit(Status.Success(it))
                 }
             }
-            .addOnFailureListener {
-                viewModelScope.launch {
-                    mLogin.emit(Status.Error(it.message.toString()))
-                }
+        }.addOnFailureListener {
+            viewModelScope.launch {
+                mLogin.emit(Status.Error(it.message.toString()))
             }
+        }
     }
 
     fun resetPassword(email: String) {
         viewModelScope.launch {
             mResetPassword.emit(Status.Loading())
         }
-        authenticationFirebase
-            .sendPasswordResetEmail(email)
-            .addOnSuccessListener {
-                viewModelScope.launch {
-                    mResetPassword.emit(Status.Success(email))
-                }
+        authenticationFirebase.sendPasswordResetEmail(email).addOnSuccessListener {
+            viewModelScope.launch {
+                mResetPassword.emit(Status.Success(email))
             }
-            .addOnFailureListener {
-                viewModelScope.launch {
-                    mResetPassword.emit(Status.Error(it.message.toString()))
-                }
+        }.addOnFailureListener {
+            viewModelScope.launch {
+                mResetPassword.emit(Status.Error(it.message.toString()))
             }
+        }
     }
 }

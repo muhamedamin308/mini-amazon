@@ -14,15 +14,12 @@ class ProductDetailsViewPagerAdapter :
         private val binding: ViewPigerImageItemViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(productImage: String) {
-            Glide.with(itemView.context)
-                .load(productImage)
-                .into(binding.viewPagerImageProduct)
+            Glide.with(itemView.context).load(productImage).into(binding.viewPagerImageProduct)
         }
     }
 
     private val diffCallback = object : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
-            oldItem == newItem
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
 
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
             oldItem == newItem
@@ -32,9 +29,7 @@ class ProductDetailsViewPagerAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewPagerViewHolder =
         ImageViewPagerViewHolder(
             ViewPigerImageItemViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
 
