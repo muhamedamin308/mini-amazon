@@ -1,6 +1,8 @@
-package com.example.miniamazon.data.classes
+package com.example.miniamazon.data.classes.order
 
 import android.os.Parcelable
+import com.example.miniamazon.data.classes.Address
+import com.example.miniamazon.data.classes.Cart
 import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
 import java.util.Date

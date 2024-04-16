@@ -1,4 +1,4 @@
-package com.example.miniamazon.data.classes
+package com.example.miniamazon.data.classes.order
 
 sealed class OrderStatus(val status: String) {
     data object Ordered: OrderStatus("Ordered")

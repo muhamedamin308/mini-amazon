@@ -2,7 +2,7 @@ package com.example.miniamazon.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.miniamazon.data.classes.Order
+import com.example.miniamazon.data.classes.order.Order
 import com.example.miniamazon.util.Constants.ORDER_COLLECTION
 import com.example.miniamazon.util.Constants.USER_COLLECTION
 import com.example.miniamazon.util.Status

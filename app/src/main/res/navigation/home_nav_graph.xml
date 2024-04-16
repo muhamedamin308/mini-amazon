@@ -113,6 +113,6 @@
         tools:layout="@layout/fragment_order_detail">
         <argument
             android:name="order"
-            app:argType="com.example.miniamazon.data.classes.Order" />
+            app:argType="com.example.miniamazon.data.classes.order.Order" />
     </fragment>
 </navigation>

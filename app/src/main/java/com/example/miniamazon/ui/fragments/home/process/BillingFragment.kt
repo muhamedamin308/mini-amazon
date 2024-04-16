@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.R
 import com.example.miniamazon.data.classes.Address
 import com.example.miniamazon.data.classes.Cart
-import com.example.miniamazon.data.classes.Order
-import com.example.miniamazon.data.classes.OrderStatus
+import com.example.miniamazon.data.classes.order.Order
+import com.example.miniamazon.data.classes.order.OrderStatus
 import com.example.miniamazon.databinding.FragmentBillingBinding
 import com.example.miniamazon.ui.adapter.AddressAdapter
 import com.example.miniamazon.ui.adapter.CartBillingAdapter

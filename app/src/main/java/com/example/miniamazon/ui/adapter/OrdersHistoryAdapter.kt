@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniamazon.R
-import com.example.miniamazon.data.classes.Order
-import com.example.miniamazon.data.classes.OrderController
-import com.example.miniamazon.data.classes.OrderStatus
+import com.example.miniamazon.data.classes.order.Order
+import com.example.miniamazon.data.classes.order.OrderController
+import com.example.miniamazon.data.classes.order.OrderStatus
 import com.example.miniamazon.databinding.OrderItemViewBinding
 
 @Suppress("DEPRECATION")

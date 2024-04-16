@@ -10,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.miniamazon.data.classes.Order
-import com.example.miniamazon.data.classes.OrderController
-import com.example.miniamazon.data.classes.OrderStatus
+import com.example.miniamazon.data.classes.order.Order
+import com.example.miniamazon.data.classes.order.OrderController
+import com.example.miniamazon.data.classes.order.OrderStatus
 import com.example.miniamazon.databinding.FragmentOrderDetailBinding
 import com.example.miniamazon.ui.adapter.CartBillingAdapter
 import com.example.miniamazon.util.VerticalItemDecoration
