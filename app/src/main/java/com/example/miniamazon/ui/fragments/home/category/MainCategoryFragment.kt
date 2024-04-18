@@ -1,7 +1,6 @@
 package com.example.miniamazon.ui.fragments.home.category
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ import com.example.miniamazon.ui.adapter.NewDealsAdapter
 import com.example.miniamazon.ui.adapter.RecommendedProductsAdapter
 import com.example.miniamazon.ui.adapter.SpecialProductsAdapter
 import com.example.miniamazon.ui.viewmodel.MainCategoryViewModel
-import com.example.miniamazon.util.Constants.TAG
 import com.example.miniamazon.util.GridSpaceItemDecoration
 import com.example.miniamazon.util.Status
 import com.example.miniamazon.util.gone
@@ -52,20 +50,20 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         specialProductAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
             findNavController().navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment, bundle
-                )
+                R.id.action_homeFragment_to_productDetailsFragment, bundle
+            )
         }
         recommendedProductsAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
             findNavController().navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment, bundle
-                )
+                R.id.action_homeFragment_to_productDetailsFragment, bundle
+            )
         }
         newDealsAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
             findNavController().navigate(
-                    R.id.action_homeFragment_to_productDetailsFragment, bundle
-                )
+                R.id.action_homeFragment_to_productDetailsFragment, bundle
+            )
         }
 
         lifecycleScope.launchWhenStarted {
@@ -144,8 +142,8 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             }
         }
 
-        binding.nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { view, _, scrollY, _, _ ->
-            if (view.getChildAt(0).bottom <= view.height + scrollY) {
+        binding.nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { scrollView, _, scrollY, _, _ ->
+            if (scrollView.getChildAt(0).bottom <= scrollView.height + scrollY) {
                 viewModel.fetchRecommendedProducts()
             }
         })
